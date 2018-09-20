@@ -160,7 +160,7 @@ public class FlanModelLoader {
 		try {
 			URLClassLoader load = URLClassLoader.newInstance(new URL[] { rootDir.toURI().toURL() });
 			model = (ModelGun) load.loadClass(ModelNameMap.get(modelInfo.ModelName)).newInstance();
-
+			model.compile();
 			for(Field field:ModelGun.class.getFields()){
 				if(field.getType().equals(ModelRendererTurbo[].class)){
 					bilder.addPart(toPolygon((ModelRendererTurbo[]) field.get(model)), field.getName());
