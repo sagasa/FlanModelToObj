@@ -87,26 +87,26 @@ public class ModelGun extends net.minecraft.client.model.ModelBase
 
 	/**回転を適応*/
 	public void compile(){
-		flip(gunModel);
-		flip(defaultBarrelModel);
-		flip(defaultScopeModel);
-		flip(defaultStockModel);
-		flip(defaultGripModel);
-		flip(ammoModel);
-		flip(slideModel);
-		flip(pumpModel);
-		flip(minigunBarrelModel);
-		flip(revolverBarrelModel);
-		flip(breakActionModel);
+		compile(gunModel);
+		compile(defaultBarrelModel);
+		compile(defaultScopeModel);
+		compile(defaultStockModel);
+		compile(defaultGripModel);
+		compile(ammoModel);
+		compile(slideModel);
+		compile(pumpModel);
+		compile(minigunBarrelModel);
+		compile(revolverBarrelModel);
+		compile(breakActionModel);
 	}
-	
+
 	protected void compile(ModelRendererTurbo[] model){
 		for(ModelRendererTurbo part : model)
 		{
 			part.compile();
 		}
 	}
-	
+
 	public void flipAll() {
 		flip(gunModel);
 		flip(defaultBarrelModel);

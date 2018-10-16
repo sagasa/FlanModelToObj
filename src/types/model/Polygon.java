@@ -1,7 +1,5 @@
 package types.model;
 
-import com.flansmod.client.tmt.PositionTextureVertex;
-
 public class Polygon {
 	public Polygon(VertexUV[] vert) {
 		Vertex = vert;

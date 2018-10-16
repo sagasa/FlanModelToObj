@@ -15,6 +15,10 @@ public class ObjBilder {
 	private StringBuilder sb = new StringBuilder("mtllib texture.mtl\n");
 
 	public void addPart(Polygon[] polis, String name) {
+		//長さ0ならブレイク
+		if(polis.length==0) {
+			return;
+		}
 		sb.append("g " + name.trim() + "\nusemtl ModelMaterial\n\n");
 		for (Polygon poly : polis) {
 			StringBuilder polysb = new StringBuilder("\nf");

@@ -8,15 +8,11 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.omg.Messaging.SyncScopeHelper;
 
 import com.flansmod.client.model.ModelGun;
 import com.flansmod.client.tmt.ModelRendererTurbo;
@@ -63,7 +59,7 @@ public class FlanModelLoader {
 				System.out.println("cant load model "+info.Name);
 				continue;
 			}
-			File outDir = new File("./output/"+info.Name+"/");
+			File outDir = new File("./output/"+info.Name.replaceAll("/", "-")+"/");
 			outDir.mkdirs();
 			try {
 				FileWriter modelwriter = new FileWriter(new File(outDir,info.ModelName+".obj"));
@@ -141,7 +137,7 @@ public class FlanModelLoader {
 			}
 			reader.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getStackTrace());
 		}
 
 		return new ModelInfo(name, model, texture, modelScale);
@@ -167,6 +163,7 @@ public class FlanModelLoader {
 				}
 			}
 		} catch (IOException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			System.out.println(e.getStackTrace());
 			return null;
 		}
 		return bilder.flash();

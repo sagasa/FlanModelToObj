@@ -135,17 +135,6 @@ public class ModelRendererTurbo {
 			v7[2] += bScale4;
 			break;
 		}
-
-		float[] qValues = new float[] { Math.abs((v[0] - v1[0]) / (v3[0] - v2[0])),
-				Math.abs((v[0] - v1[0]) / (v4[0] - v5[0])), Math.abs((v4[0] - v5[0]) / (v7[0] - v6[0])),
-				Math.abs((v3[0] - v2[0]) / (v7[0] - v6[0])),
-
-				Math.abs((v[1] - v3[1]) / (v1[1] - v2[1])), Math.abs((v4[1] - v7[1]) / (v5[1] - v6[1])),
-				Math.abs((v[1] - v3[1]) / (v4[1] - v7[1])), Math.abs((v1[1] - v2[1]) / (v5[1] - v6[1])),
-
-				Math.abs((v[2] - v4[2]) / (v1[2] - v5[2])), Math.abs((v[2] - v4[2]) / (v3[2] - v7[2])),
-				Math.abs((v1[2] - v5[2]) / (v2[2] - v6[2])), Math.abs((v3[2] - v7[2]) / (v2[2] - v6[2])) };
-
 		addRectShape(v, v1, v2, v3, v4, v5, v6, v7, w, h, d);
 	}
 
@@ -286,8 +275,30 @@ public class ModelRendererTurbo {
 	}
 
 	public void compile() {
-		
+		for (Polygon poly : Poly) {
+			for (VertexUV vert : poly.Vertex) {
+				//rotateX
+				double r = Math.toRadians(field_78795_f);
+				float f = vert.Y - rotationPointY;
+				float f1 = vert.Z - rotationPointZ;
+				vert.Y = (float) ((Math.cos(r) * f)+(Math.sin(r)*f));
+				vert.Z = (float) ((-Math.sin(r) * f1)+(Math.cos(r)*f1));
+				//rotateY
+				r = Math.toRadians(field_78796_g);
+				f = vert.X - rotationPointX;
+				f1 = vert.Z - rotationPointZ;
+				vert.X = (float) ((Math.cos(r) * f)+(Math.sin(r)*f));
+				vert.Z = (float) ((-Math.sin(r) * f1)+(Math.cos(r)*f1));
+				//rotateZ
+				r = Math.toRadians(field_78808_h);
+				f = vert.Y - rotationPointY;
+				f1 = vert.Z - rotationPointZ;
+				vert.Y = (float) ((Math.cos(r) * f)+(Math.sin(r)*f));
+				vert.Z = (float) ((-Math.sin(r) * f1)+(Math.cos(r)*f1));
+			}
+		}
 	}
+
 
 	public float field_78795_f;// TODO rotateX
 	public float field_78796_g;// TODO rotateY
