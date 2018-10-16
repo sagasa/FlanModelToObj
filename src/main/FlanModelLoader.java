@@ -2,12 +2,19 @@ package main;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.lang.reflect.Field;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.flansmod.client.model.ModelGun;
+import com.flansmod.client.model.ModelVehicle;
 import com.flansmod.client.tmt.ModelRendererTurbo;
 import types.model.Polygon;
 
@@ -22,18 +30,24 @@ import types.model.Polygon;
 public class FlanModelLoader {
 
 	private static final String separator;
+
 	static {
 		separator = File.separator.equals("\\") ? "\\" + File.separator : File.separator;
 	}
 
 	private File rootDir;
+	private URLClassLoader loader;
 	private Map<String, String> ModelNameMap = new HashMap<>();
 
 	private Map<String, String> ModelMap = new HashMap<>();
 
 	public FlanModelLoader(File rootdir) {
 		rootDir = rootdir;
-
+		try {
+			loader = URLClassLoader.newInstance(new URL[] { rootDir.toURI().toURL() });
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		}
 		for (File file : listAll(new File(rootDir, "/com/flansmod/client/model"), new ArrayList<>())) {
 			String name = file.getName();
 			// モデルなら
@@ -46,60 +60,80 @@ public class FlanModelLoader {
 								.replace(".class", ""));
 			}
 		}
-		// 読み込んでプット
-		for (File file : listAll(new File(rootDir, "/guns/"), new ArrayList<>())) {
-			ModelInfo info = readModelInfo(file);
+		// 設定ファイルから読み込み
+		List<ModelInfo> infolist = new ArrayList<>();
+		try {
+			for (File file : listAll(new File(rootDir, "/guns/"), new ArrayList<>())) {
+				infolist.add(readModelInfo(ModelType.GUN, new FileInputStream(file)));
+			}
+			for (File file : listAll(new File(rootDir, "/vehicles/"), new ArrayList<>())) {
+				infolist.add(readModelInfo(ModelType.VEHICLE, new FileInputStream(file)));
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 
-			if(ModelNameMap.get(info.ModelName) == null){
-				System.out.println("model not bind "+info.Name);
+		// Infoからモデルを出力
+		for (ModelInfo info : infolist) {
+			if (ModelNameMap.get(info.ModelName) == null) {
+				System.out.println("model not bind " + info.Name);
 				continue;
 			}
-			String obj = loadGunModel(info);
-			if(obj==null){
-				System.out.println("cant load model "+info.Name);
+
+			String obj = null;
+			File outDir = null;
+			// Typeによって場合分け
+			switch (info.Type) {
+			case GUN:
+				obj = loadGunModel(info);
+				outDir = new File("./output/guns/" + info.Name.replaceAll("/", "-") + "/");
+				break;
+			case VEHICLE:
+				break;
+			}
+			if (obj == null || outDir == null) {
+				System.out.println("cant load model " + info.Name);
 				continue;
 			}
-			File outDir = new File("./output/"+info.Name.replaceAll("/", "-")+"/");
 			outDir.mkdirs();
 			try {
-				FileWriter modelwriter = new FileWriter(new File(outDir,info.ModelName+".obj"));
+				FileWriter modelwriter = new FileWriter(new File(outDir, info.ModelName + ".obj"));
 				modelwriter.write(obj);
 				modelwriter.close();
 
-				FileWriter mtlwriter = new FileWriter(new File(outDir,"texture.mtl"));
+				FileWriter mtlwriter = new FileWriter(new File(outDir, "texture.mtl"));
 				mtlwriter.write(ObjBilder.getMtl(info.TextureName));
 				mtlwriter.close();
 
-				File txture = new File(rootDir,"assets/flansmod/skins/"+info.TextureName+".png");
-				if(txture.exists()){
-				//	texture.mtl
-					new File(outDir,info.TextureName+".png").delete();
-					Files.copy(txture.toPath(), new File(outDir,info.TextureName+".png").toPath());
-				}else{
-					System.out.println("missing texture "+txture.getPath());
+				File txture = new File(rootDir, "assets/flansmod/skins/" + info.TextureName + ".png");
+				if (txture.exists()) {
+					// texture.mtl
+					new File(outDir, info.TextureName + ".png").delete();
+					Files.copy(txture.toPath(), new File(outDir, info.TextureName + ".png").toPath());
+				} else {
+					System.out.println("missing texture " + txture.getPath());
 				}
 			} catch (IOException e) {
-				System.out.println("errer in writing model "+info.Name);
+				System.out.println("errer in writing model " + info.Name);
 				e.printStackTrace();
 			}
-			System.out.println("load sucsessful "+ info.Name);
-
-
-
+			System.out.println("load sucsessful " + info.Name);
 		}
 	}
 
-	public String getModel(String name){
+	public String getModel(String name) {
 		return ModelMap.get(name);
 	}
 
 	private class ModelInfo {
+		ModelType Type;
 		String Name;
 		String ModelName;
 		String TextureName;
 		float ModelScale;
 
-		public ModelInfo(String name, String model, String tex, float scale) {
+		public ModelInfo(ModelType type, String name, String model, String tex, float scale) {
+			Type = type;
 			Name = name;
 			ModelName = model;
 			TextureName = tex;
@@ -107,17 +141,18 @@ public class FlanModelLoader {
 		}
 	}
 
-	private ModelInfo readModelInfo(File info) {
-		// 設定ファイルを参照
-		if (!info.exists() && !info.isFile()) {
-			return null;
-		}
+	private enum ModelType {
+		GUN, VEHICLE
+	}
+
+	/** 渡されたストリームからモデル関連の情報を取得する ストリームは閉じる */
+	private ModelInfo readModelInfo(ModelType type, InputStream in) {
 		String name = null;
 		String model = null;
 		String texture = null;
 		float modelScale = 1f;
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(info));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in, Charset.forName("UTF-8")));
 			String line;
 			while ((line = reader.readLine()) != null) {
 				String[] split = line.split(" ", 2);
@@ -140,29 +175,51 @@ public class FlanModelLoader {
 			System.out.println(e.getStackTrace());
 		}
 
-		return new ModelInfo(name, model, texture, modelScale);
+		return new ModelInfo(type, name, model, texture, modelScale);
 	}
 
-	/** 設定ファイルからテクスチャ付きモデルを返す */
+	/** 設定ファイルからobjモデルを返す */
 	private String loadGunModel(ModelInfo modelInfo) {
 
 		if (modelInfo == null) {
 			return null;
 		}
-
 		// モデル変換
 		ModelGun model;
 		ObjBilder bilder = new ObjBilder();
 		try {
-			URLClassLoader load = URLClassLoader.newInstance(new URL[] { rootDir.toURI().toURL() });
-			model = (ModelGun) load.loadClass(ModelNameMap.get(modelInfo.ModelName)).newInstance();
+			model = (ModelGun) loader.loadClass(ModelNameMap.get(modelInfo.ModelName)).newInstance();
 			model.compile();
-			for(Field field:ModelGun.class.getFields()){
-				if(field.getType().equals(ModelRendererTurbo[].class)){
+			for (Field field : ModelGun.class.getFields()) {
+				if (field.getType().equals(ModelRendererTurbo[].class)) {
 					bilder.addPart(toPolygon((ModelRendererTurbo[]) field.get(model)), field.getName());
 				}
 			}
-		} catch (IOException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			System.out.println(e.getStackTrace());
+			return null;
+		}
+		return bilder.flash();
+	}
+	
+	/** 設定ファイルからobjモデルを返す */
+	private String loadVehicleModel(ModelInfo modelInfo) {
+
+		if (modelInfo == null) {
+			return null;
+		}
+		// モデル変換
+		ModelVehicle model;
+		ObjBilder bilder = new ObjBilder();
+		try {
+			model = (ModelVehicle) loader.loadClass(ModelNameMap.get(modelInfo.ModelName)).newInstance();
+			model.compile();
+			for (Field field : ModelGun.class.getFields()) {
+				if (field.getType().equals(ModelRendererTurbo[].class)) {
+					bilder.addPart(toPolygon((ModelRendererTurbo[]) field.get(model)), field.getName());
+				}
+			}
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			System.out.println(e.getStackTrace());
 			return null;
 		}
