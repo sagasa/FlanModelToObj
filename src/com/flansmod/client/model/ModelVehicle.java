@@ -33,7 +33,6 @@ public class ModelVehicle extends ModelDriveable
 
 	public int animFrame = 0;
 
-
 	@Override
 	public void flipAll()
 	{

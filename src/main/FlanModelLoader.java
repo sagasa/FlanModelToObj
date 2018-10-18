@@ -4,12 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -89,6 +87,9 @@ public class FlanModelLoader {
 				outDir = new File("./output/guns/" + info.Name.replaceAll("/", "-") + "/");
 				break;
 			case VEHICLE:
+				obj = loadVehicleModel(info);
+				outDir = new File("./output/vehicles/" + info.Name.replaceAll("/", "-") + "/");
+
 				break;
 			}
 			if (obj == null || outDir == null) {
@@ -201,7 +202,7 @@ public class FlanModelLoader {
 		}
 		return bilder.flash();
 	}
-	
+
 	/** 設定ファイルからobjモデルを返す */
 	private String loadVehicleModel(ModelInfo modelInfo) {
 
@@ -214,11 +215,13 @@ public class FlanModelLoader {
 		try {
 			model = (ModelVehicle) loader.loadClass(ModelNameMap.get(modelInfo.ModelName)).newInstance();
 			model.compile();
-			for (Field field : ModelGun.class.getFields()) {
+			for (Field field : ModelVehicle.class.getFields()) {
+				System.err.println(field.getType() + " " + field.getName());
 				if (field.getType().equals(ModelRendererTurbo[].class)) {
 					bilder.addPart(toPolygon((ModelRendererTurbo[]) field.get(model)), field.getName());
 				}
 			}
+		} catch (NoSuchFieldError e) {
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			System.out.println(e.getStackTrace());
 			return null;
