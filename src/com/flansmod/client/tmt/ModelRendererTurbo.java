@@ -50,98 +50,28 @@ public class ModelRendererTurbo {
 	{
 		addShape3D(x, y, z, coordinates, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, direction, null);
 	}
-   
-	/**
-	 * Creates a shape from a 2D vector shape.
-	 * @param x the starting x position
-	 * @param y the starting y position
-	 * @param z the starting z position
-	 * @param coordinates an array of coordinates that form the shape
-	 * @param depth the depth of the shape
-	 * @param shapeTextureWidth the width of the texture of one side of the shape
-	 * @param shapeTextureHeight the height of the texture the shape
-	 * @param sideTextureWidth the width of the texture of the side of the shape
-	 * @param sideTextureHeight the height of the texture of the side of the shape
-	 * @param direction the direction the starting point of the shape is facing
-	 * @param faceLengths An array with the length of each face. Used to set
-	 * the texture width of each face on the side manually.
-	 */
+
+
 	public void addShape3D(float x, float y, float z, Coord2D[] coordinates, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction, float[] faceLengths)
 	{
 		addShape3D(x, y, z, new Shape2D(coordinates), depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, direction, faceLengths);
 	}
-	
-	/**
-	 * Creates a shape from a 2D vector shape.
-	 * @param x the starting x position
-	 * @param y the starting y position
-	 * @param z the starting z position
-	 * @param coordinates an ArrayList of coordinates that form the shape
-	 * @param depth the depth of the shape
-	 * @param shapeTextureWidth the width of the texture of one side of the shape
-	 * @param shapeTextureHeight the height of the texture the shape
-	 * @param sideTextureWidth the width of the texture of the side of the shape
-	 * @param sideTextureHeight the height of the texture of the side of the shape
-	 * @param direction the direction the starting point of the shape is facing
-	 */
+
 	public void addShape3D(float x, float y, float z, ArrayList<Coord2D> coordinates, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction)
 	{
 		addShape3D(x, y, z, coordinates, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, direction, null);
 	}
-	
-	/**
-	 * Creates a shape from a 2D vector shape.
-	 * @param x the starting x position
-	 * @param y the starting y position
-	 * @param z the starting z position
-	 * @param coordinates an ArrayList of coordinates that form the shape
-	 * @param depth the depth of the shape
-	 * @param shapeTextureWidth the width of the texture of one side of the shape
-	 * @param shapeTextureHeight the height of the texture the shape
-	 * @param sideTextureWidth the width of the texture of the side of the shape
-	 * @param sideTextureHeight the height of the texture of the side of the shape
-	 * @param direction the direction the starting point of the shape is facing
-	 * @param faceLengths An array with the length of each face. Used to set
-	 * the texture width of each face on the side manually.
-	 */
+
 	public void addShape3D(float x, float y, float z, ArrayList<Coord2D> coordinates, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction, float[] faceLengths)
 	{
 		addShape3D(x, y, z, new Shape2D(coordinates), depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, direction, faceLengths);
 	}
 
-	/**
-	 * Creates a shape from a 2D vector shape.
-	 * @param x the starting x position
-	 * @param y the starting y position
-	 * @param z the starting z position
-	 * @param shape a Shape2D which contains the coordinates of the shape points
-	 * @param depth the depth of the shape
-	 * @param shapeTextureWidth the width of the texture of one side of the shape
-	 * @param shapeTextureHeight the height of the texture the shape
-	 * @param sideTextureWidth the width of the texture of the side of the shape
-	 * @param sideTextureHeight the height of the texture of the side of the shape
-	 * @param direction the direction the starting point of the shape is facing
-	 */
 	public void addShape3D(float x, float y, float z, Shape2D shape, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction)
 	{
 		addShape3D(x, y, z, shape, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, direction, null);
 	}
-	
-	/**
-	 * Creates a shape from a 2D vector shape.
-	 * @param x the starting x position
-	 * @param y the starting y position
-	 * @param z the starting z position
-	 * @param shape a Shape2D which contains the coordinates of the shape points
-	 * @param depth the depth of the shape
-	 * @param shapeTextureWidth the width of the texture of one side of the shape
-	 * @param shapeTextureHeight the height of the texture the shape
-	 * @param sideTextureWidth the width of the texture of the side of the shape
-	 * @param sideTextureHeight the height of the texture of the side of the shape
-	 * @param direction the direction the starting point of the shape is facing
-	 * @param faceLengths An array with the length of each face. Used to set
-	 * the texture width of each face on the side manually.
-	 */
+
 	public void addShape3D(float x, float y, float z, Shape2D shape, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction, float[] faceLengths)
 	{
 		float rotX = 0;
@@ -169,42 +99,26 @@ public class ModelRendererTurbo {
 		}
 		addShape3D(x, y, z, shape, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, rotX, rotY, rotZ, faceLengths);
 	}
-	
-	/**
-	 * Creates a shape from a 2D vector shape.
-	 * @param x the starting x position
-	 * @param y the starting y position
-	 * @param z the starting z position
-	 * @param shape a Shape2D which contains the coordinates of the shape points
-	 * @param depth the depth of the shape
-	 * @param shapeTextureWidth the width of the texture of one side of the shape
-	 * @param shapeTextureHeight the height of the texture the shape
-	 * @param sideTextureWidth the width of the texture of the side of the shape
-	 * @param sideTextureHeight the height of the texture of the side of the shape
-	 * @param rotX the rotation around the x-axis
-	 * @param rotY the rotation around the y-axis
-	 * @param rotZ the rotation around the z-axis
-	 */
+
 	public void addShape3D(float x, float y, float z, Shape2D shape, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, float rotX, float rotY, float rotZ)
 	{
 		addShape3D(x, y, z, shape, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, rotX, rotY, rotZ, null);
 	}
-	
+
 	public void addShape3D(float x, float y, float z, Shape2D shape, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, float rotX, float rotY, float rotZ, float[] faceLengths)
 	{
-		Shape3D shape3D = shape.extrude(x, y, z, rotX, rotY, rotZ, depth, textureOffsetX, textureOffsetY, textureWidth, textureHeight, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, faceLengths);
-		
-		if(flip)
-		{
-			for(int idx = 0; idx < shape3D.faces.length; idx++)
-			{
-				shape3D.faces[idx].flipFace();
-			}
+		Coord2D[] shapeCoord = shape.coords;
+		for (int i = 0; i < shapeCoord.length; i++) {
+			Poly.add(toPoly(pos0, pos1, pos2, pos3, x0, y0, x1, y1));
 		}
-		
+
+		Shape3D shape3D = shape.extrude(x, y, z, rotX, rotY, rotZ, depth, textureOffsetX, textureOffsetY, textureX, textureY, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, faceLengths);
 		copyTo(shape3D.vertices, shape3D.faces);
+
+
+
 	}
-	
+
 	public void addFlexBox(float x, float y, float z, int w, int h, int d, float scale, float bScale1, float bScale2,
 			float bScale3, float bScale4, int dir) {
 		float f4 = x + w;
@@ -308,7 +222,7 @@ public class ModelRendererTurbo {
 		f4 += scale;
 		f5 += scale;
 		f6 += scale;
-				
+
 		int m = (mirror ? -1 : 1);
 		if(mirror)
 		{
@@ -316,7 +230,7 @@ public class ModelRendererTurbo {
 			f4 = x;
 			x = f7;
 		}
-		
+
 		float[] v = {x, y, z};
 		float[] v1 = {f4, y, z};
 		float[] v2 = {f4, f5, z};
@@ -325,7 +239,7 @@ public class ModelRendererTurbo {
 		float[] v5 = {f4, y, f6};
 		float[] v6 = {f4, f5, f6};
 		float[] v7 = {x, f5, f6};
-		
+
 		switch(dir)
 		{
 		case MR_RIGHT:
@@ -389,27 +303,9 @@ public class ModelRendererTurbo {
 			v7[2] += bottomScale;
 			break;
 		}
-		
-		float[] qValues = new float[] {
-				Math.abs((v[0] - v1[0])/(v3[0]-v2[0])),
-				Math.abs((v[0] - v1[0])/(v4[0]-v5[0])),
-				Math.abs((v4[0] - v5[0])/(v7[0]-v6[0])),
-				Math.abs((v3[0] - v2[0])/(v7[0]-v6[0])),
-				
-				Math.abs((v[1] - v3[1])/(v1[1]-v2[1])),
-				Math.abs((v4[1] - v7[1])/(v5[1]-v6[1])),
-				Math.abs((v[1] - v3[1])/(v4[1]-v7[1])),
-				Math.abs((v1[1] - v2[1])/(v5[1]-v6[1])),
-				
-				Math.abs((v[2] - v4[2])/(v1[2]-v5[2])),
-				Math.abs((v[2] - v4[2])/(v3[2]-v7[2])),
-				Math.abs((v1[2] - v5[2])/(v2[2]-v6[2])),
-				Math.abs((v3[2] - v7[2])/(v2[2]-v6[2]))	
-		};
-		
 		addRectShape(v, v1, v2, v3, v4, v5, v6, v7, w, h, d);
 	}
-	
+
 	public ModelRendererTurbo addBox(float x, float y, float z, int w, int h, int d) {
 		func_78790_a(x, y, z, w, h, d, 0.0F);
 		return this;
@@ -469,12 +365,12 @@ public class ModelRendererTurbo {
 
 	public void addRectShape(float[] v0, float[] v1, float[] v2, float[] v3, float[] v4, float[] v5, float[] v6,
 			float[] v7, int w, int h, int d) {
-		Poly.add(toVertexUV(v0, v3, v2, v1, d, d, w, h));
-		Poly.add(toVertexUV(v4, v7, v3, v0, 0, d, d, h));
-		Poly.add(toVertexUV(v5, v6, v7, v4, d + w + d, d, w, h));
-		Poly.add(toVertexUV(v1, v2, v6, v5, d + w, d, d, h));
-		Poly.add(toVertexUV(v4, v0, v1, v5, d, 0, w, d));
-		Poly.add(toVertexUV(v3, v7, v6, v2, d + w, 0, w, d));
+		Poly.add(toPoly(v0, v3, v2, v1, d, d, w, h));
+		Poly.add(toPoly(v4, v7, v3, v0, 0, d, d, h));
+		Poly.add(toPoly(v5, v6, v7, v4, d + w + d, d, w, h));
+		Poly.add(toPoly(v1, v2, v6, v5, d + w, d, d, h));
+		Poly.add(toPoly(v4, v0, v1, v5, d, 0, w, d));
+		Poly.add(toPoly(v3, v7, v6, v2, d + w, 0, w, d));
 	}
 
 	/**
@@ -489,7 +385,7 @@ public class ModelRendererTurbo {
 	 * @param y1
 	 *            高さ
 	 */
-	private Polygon toVertexUV(float[] pos0, float[] pos1, float[] pos2, float[] pos3, int x0, int y0, int x1, int y1) {
+	private Polygon toPoly(float[] pos0, float[] pos1, float[] pos2, float[] pos3, int x0, int y0, int x1, int y1) {
 		return new Polygon(new VertexUV[] {
 				new VertexUV(pos0, (textureOffsetX + x0) / textureX, 1 - (textureOffsetY + y0) / textureY),
 				new VertexUV(pos1, (textureOffsetX + x0) / textureX, 1 - (textureOffsetY + y0 + y1) / textureY),
@@ -584,7 +480,7 @@ public class ModelRendererTurbo {
 	public ArrayList<Polygon> Poly = new ArrayList<>();
 
 	public boolean mirror = false;
-	
+
 	private float textureX;
 	private float textureY;
 
@@ -599,4 +495,6 @@ public class ModelRendererTurbo {
 	public static final int MR_RIGHT = 3;
 	public static final int MR_TOP = 4;
 	public static final int MR_BOTTOM = 5;
+
+	private static final float pi = (float) Math.PI;
 }
