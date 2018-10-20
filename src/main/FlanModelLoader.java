@@ -216,7 +216,6 @@ public class FlanModelLoader {
 			model = (ModelVehicle) loader.loadClass(ModelNameMap.get(modelInfo.ModelName)).newInstance();
 			model.compile();
 			for (Field field : ModelVehicle.class.getFields()) {
-				System.err.println(field.getType() + " " + field.getName());
 				if (field.getType().equals(ModelRendererTurbo[].class)) {
 					bilder.addPart(toPolygon((ModelRendererTurbo[]) field.get(model)), field.getName());
 				}

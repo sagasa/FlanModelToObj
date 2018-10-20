@@ -1,15 +1,7 @@
 package com.flansmod.client.tmt;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
-import com.flansmod.client.model.EnumAnimationType;
-
 import net.minecraft.client.model.ModelBase;
 import types.model.Polygon;
 import types.model.VertexUV;
@@ -30,8 +22,8 @@ import types.model.VertexUV;
 public class ModelRendererTurbo {
 	/**
 	 * Creates a new ModelRenderTurbo object. It requires the coordinates of the
-	 * position of the texture, but also allows you to specify the width and
-	 * height of the texture, allowing you to use bigger textures instead.
+	 * position of the texture, but also allows you to specify the width and height
+	 * of the texture, allowing you to use bigger textures instead.
 	 */
 	public ModelRendererTurbo(ModelBase modelbase, int offsetX, int offsetY, int textureX, int textureY) {
 		this.textureOffsetX = offsetX;
@@ -46,39 +38,43 @@ public class ModelRendererTurbo {
 		}
 	}
 
-	public void addShape3D(float x, float y, float z, Coord2D[] coordinates, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction)
-	{
-		addShape3D(x, y, z, coordinates, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, direction, null);
+	public void addShape3D(float x, float y, float z, Coord2D[] coordinates, float depth, int shapeTextureWidth,
+			int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction) {
+		addShape3D(x, y, z, coordinates, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth,
+				sideTextureHeight, direction, null);
 	}
 
-
-	public void addShape3D(float x, float y, float z, Coord2D[] coordinates, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction, float[] faceLengths)
-	{
-		addShape3D(x, y, z, new Shape2D(coordinates), depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, direction, faceLengths);
+	public void addShape3D(float x, float y, float z, Coord2D[] coordinates, float depth, int shapeTextureWidth,
+			int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction, float[] faceLengths) {
+		addShape3D(x, y, z, new Shape2D(coordinates), depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth,
+				sideTextureHeight, direction, faceLengths);
 	}
 
-	public void addShape3D(float x, float y, float z, ArrayList<Coord2D> coordinates, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction)
-	{
-		addShape3D(x, y, z, coordinates, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, direction, null);
+	public void addShape3D(float x, float y, float z, ArrayList<Coord2D> coordinates, float depth,
+			int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction) {
+		addShape3D(x, y, z, coordinates, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth,
+				sideTextureHeight, direction, null);
 	}
 
-	public void addShape3D(float x, float y, float z, ArrayList<Coord2D> coordinates, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction, float[] faceLengths)
-	{
-		addShape3D(x, y, z, new Shape2D(coordinates), depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, direction, faceLengths);
+	public void addShape3D(float x, float y, float z, ArrayList<Coord2D> coordinates, float depth,
+			int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction,
+			float[] faceLengths) {
+		addShape3D(x, y, z, new Shape2D(coordinates), depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth,
+				sideTextureHeight, direction, faceLengths);
 	}
 
-	public void addShape3D(float x, float y, float z, Shape2D shape, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction)
-	{
-		addShape3D(x, y, z, shape, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, direction, null);
+	public void addShape3D(float x, float y, float z, Shape2D shape, float depth, int shapeTextureWidth,
+			int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction) {
+		addShape3D(x, y, z, shape, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight,
+				direction, null);
 	}
 
-	public void addShape3D(float x, float y, float z, Shape2D shape, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction, float[] faceLengths)
-	{
+	public void addShape3D(float x, float y, float z, Shape2D shape, float depth, int shapeTextureWidth,
+			int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction, float[] faceLengths) {
 		float rotX = 0;
 		float rotY = 0;
 		float rotZ = 0;
-		switch(direction)
-		{
+		switch (direction) {
 		case MR_LEFT:
 			rotY = pi / 2;
 			break;
@@ -97,26 +93,48 @@ public class ModelRendererTurbo {
 		case MR_BACK:
 			break;
 		}
-		addShape3D(x, y, z, shape, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, rotX, rotY, rotZ, faceLengths);
+		addShape3D(x, y, z, shape, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight,
+				rotX, rotY, rotZ, faceLengths);
 	}
 
-	public void addShape3D(float x, float y, float z, Shape2D shape, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, float rotX, float rotY, float rotZ)
-	{
-		addShape3D(x, y, z, shape, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, rotX, rotY, rotZ, null);
+	public void addShape3D(float x, float y, float z, Shape2D shape, float depth, int shapeTextureWidth,
+			int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, float rotX, float rotY, float rotZ) {
+		addShape3D(x, y, z, shape, depth, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight,
+				rotX, rotY, rotZ, null);
 	}
 
 	public void addShape3D(float x, float y, float z, Shape2D shape, float depth, int shapeTextureWidth, int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, float rotX, float rotY, float rotZ, float[] faceLengths)
 	{
-		Coord2D[] shapeCoord = shape.coords;
-		for (int i = 0; i < shapeCoord.length; i++) {
-			Poly.add(toPoly(pos0, pos1, pos2, pos3, x0, y0, x1, y1));
+		Coord2D[] coords = shape.coords;
+
+		Coord2D exVec = new Coord2D(0, 0);
+		exVec.zCoord = -depth;
+		exVec.rotate(rotX, rotY, rotZ);
+
+		for (int i = 0; i < coords.length; i++) {
+			coords[i].rotate(rotX, rotY, rotZ);
 		}
-
-		Shape3D shape3D = shape.extrude(x, y, z, rotX, rotY, rotZ, depth, textureOffsetX, textureOffsetY, textureX, textureY, shapeTextureWidth, shapeTextureHeight, sideTextureWidth, sideTextureHeight, faceLengths);
-		copyTo(shape3D.vertices, shape3D.faces);
-
-
-
+		for (int i = 0; i < coords.length; i++) {
+			if(i==0) {
+				VertexUV ver0 = new VertexUV(coords[coords.length-1]).translate(x, y, z);
+				VertexUV ver1 = new VertexUV(coords[0]).translate(x, y, z);
+				VertexUV ver2 = new VertexUV(coords[0]).translate(x, y, z).translate((float)exVec.xCoord,(float)exVec.yCoord, (float)exVec.zCoord);
+				VertexUV ver3 = new VertexUV(coords[coords.length-1]).translate(x,y,z).translate((float)exVec.xCoord,(float)exVec.yCoord, (float)exVec.zCoord);
+				Poly.add(new Polygon(new VertexUV[] {ver0,ver1,ver2,ver3}));
+			}else {
+				VertexUV ver0 = new VertexUV(coords[i-1]).translate(x, y, z);
+				VertexUV ver1 = new VertexUV(coords[i]).translate(x, y, z);
+				VertexUV ver2 = new VertexUV(coords[i]).translate(x, y, z).translate((float)exVec.xCoord,(float)exVec.yCoord, (float)exVec.zCoord);
+				VertexUV ver3 = new VertexUV(coords[i-1]).translate(x, y, z).translate((float)exVec.xCoord,(float)exVec.yCoord, (float)exVec.zCoord);
+				Poly.add(new Polygon(new VertexUV[] {ver0,ver1,ver2,ver3}));
+			}
+		}
+		List<VertexUV> verts = new ArrayList<>();
+		for (int i = 0; i < coords.length; i++) {
+			verts.add(new VertexUV(coords[i]).translate(x, y, z));
+		}
+		Poly.add(new Polygon(verts.toArray(new VertexUV[verts.size()])));
+		Poly.add(new Polygon(verts.toArray(new VertexUV[verts.size()])).translate((float)exVec.xCoord,(float)exVec.yCoord, (float)exVec.zCoord));
 	}
 
 	public void addFlexBox(float x, float y, float z, int w, int h, int d, float scale, float bScale1, float bScale2,
@@ -133,8 +151,7 @@ public class ModelRendererTurbo {
 
 		int m = 1;
 		/*
-		 * int m = (mirror ? -1 : 1); if(mirror) { float f7 = f4; f4 = x; x =
-		 * f7; } //
+		 * int m = (mirror ? -1 : 1); if(mirror) { float f7 = f4; f4 = x; x = f7; } //
 		 */
 
 		float[] v = { x, y, z };
@@ -211,7 +228,7 @@ public class ModelRendererTurbo {
 		addRectShape(v, v1, v2, v3, v4, v5, v6, v7, w, h, d);
 	}
 
-	public void addTrapezoid(float x, float y, float z, int w, int h, int d, float scale, float bottomScale, int dir)
+	public void addFlexTrapezoid(float x, float y, float z, int w, int h, int d, float scale, float bScale1, float bScale2, float bScale3, float bScale4, float fScale1, float fScale2, int dir)
 	{
 		float f4 = x + w;
 		float f5 = y + h;
@@ -240,8 +257,149 @@ public class ModelRendererTurbo {
 		float[] v6 = {f4, f5, f6};
 		float[] v7 = {x, f5, f6};
 
+
 		switch(dir)
 		{
+			case MR_RIGHT:
+				v[2] -= fScale1;
+				v1[2] -= fScale1;
+				v4[2] += fScale2;
+				v5[2] += fScale2;
+
+				v[1] -= bScale1;
+				v[2] -= bScale3;
+				v3[1] += bScale2;
+				v3[2] -= bScale3;
+				v4[1] -= bScale1;
+				v4[2] += bScale4;
+				v7[1] += bScale2;
+				v7[2] += bScale4;
+				break;
+			case MR_LEFT:
+				v[2] -= fScale1;
+				v1[2] -= fScale1;
+				v4[2] += fScale2;
+				v5[2] += fScale2;
+
+				v1[1] -= bScale1;
+				v1[2] -= bScale3;
+				v2[1] += bScale2;
+				v2[2] -= bScale3;
+				v5[1] -= bScale1;
+				v5[2] += bScale4;
+				v6[1] += bScale2;
+				v6[2] += bScale4;
+				break;
+			case MR_FRONT:
+				v1[1] -= fScale1;
+				v5[1] -= fScale1;
+				v2[1] += fScale2;
+				v6[1] += fScale2;
+
+				v[0] -= m * bScale4;
+				v[1] -= bScale1;
+				v1[0] += m * bScale3;
+				v1[1] -= bScale1;
+				v2[0] += m * bScale3;
+				v2[1] += bScale2;
+				v3[0] -= m * bScale4;
+				v3[1] += bScale2;
+				break;
+			case MR_BACK:
+				v1[1] -= fScale1;
+				v5[1] -= fScale1;
+				v2[1] += fScale2;
+				v6[1] += fScale2;
+
+				v4[0] -= m * bScale4;
+				v4[1] -= bScale1;
+				v5[0] += m * bScale3;
+				v5[1] -= bScale1;
+				v6[0] += m * bScale3;
+				v6[1] += bScale2;
+				v7[0] -= m * bScale4;
+				v7[1] += bScale2;
+				break;
+			case MR_TOP:
+				v1[2] -= fScale1;
+				v2[2] -= fScale1;
+				v5[2] += fScale2;
+				v6[2] += fScale2;
+
+				v[0] -= m * bScale1;
+				v[2] -= bScale3;
+				v1[0] += m * bScale2;
+				v1[2] -= bScale3;
+				v4[0] -= m * bScale1;
+				v4[2] += bScale4;
+				v5[0] += m * bScale2;
+				v5[2] += bScale4;
+				break;
+			case MR_BOTTOM:
+				v1[2] -= fScale1;
+				v2[2] -= fScale1;
+				v5[2] += fScale2;
+				v6[2] += fScale2;
+
+				v2[0] += m * bScale2;
+				v2[2] -= bScale3;
+				v3[0] -= m * bScale1;
+				v3[2] -= bScale3;
+				v6[0] += m * bScale2;
+				v6[2] += bScale4;
+				v7[0] -= m * bScale1;
+				v7[2] += bScale4;
+				break;
+		}
+
+		float[] qValues = new float[] {
+				Math.abs((v[0] - v1[0])/(v3[0]-v2[0])),
+				Math.abs((v[0] - v1[0])/(v4[0]-v5[0])),
+				Math.abs((v4[0] - v5[0])/(v7[0]-v6[0])),
+				Math.abs((v3[0] - v2[0])/(v7[0]-v6[0])),
+
+				Math.abs((v[1] - v3[1])/(v1[1]-v2[1])),
+				Math.abs((v4[1] - v7[1])/(v5[1]-v6[1])),
+				Math.abs((v[1] - v3[1])/(v4[1]-v7[1])),
+				Math.abs((v1[1] - v2[1])/(v5[1]-v6[1])),
+
+				Math.abs((v[2] - v4[2])/(v1[2]-v5[2])),
+				Math.abs((v[2] - v4[2])/(v3[2]-v7[2])),
+				Math.abs((v1[2] - v5[2])/(v2[2]-v6[2])),
+				Math.abs((v3[2] - v7[2])/(v2[2]-v6[2]))
+		};
+
+		addRectShape(v, v1, v2, v3, v4, v5, v6, v7, w, h, d);
+	}
+
+	public void addTrapezoid(float x, float y, float z, int w, int h, int d, float scale, float bottomScale, int dir) {
+		float f4 = x + w;
+		float f5 = y + h;
+		float f6 = z + d;
+		x -= scale;
+		y -= scale;
+		z -= scale;
+		f4 += scale;
+		f5 += scale;
+		f6 += scale;
+
+		int m = (mirror ? -1 : 1);
+		if (mirror) {
+			float f7 = f4;
+			f4 = x;
+			x = f7;
+		}
+
+		float[] v = { x, y, z };
+		float[] v1 = { f4, y, z };
+		float[] v2 = { f4, f5, z };
+		float[] v3 = { x, f5, z };
+		float[] v4 = { x, y, f6 };
+		float[] v5 = { f4, y, f6 };
+		float[] v6 = { f4, f5, f6 };
+		float[] v7 = { x, f5, f6 };
+
+		switch (dir) {
 		case MR_RIGHT:
 			v[1] -= bottomScale;
 			v[2] -= bottomScale;
@@ -394,8 +552,8 @@ public class ModelRendererTurbo {
 	}
 
 	/**
-	 * Sets the position of the shape, relative to the model's origins. Note
-	 * that changing the offsets will not change the pivot of the model.
+	 * Sets the position of the shape, relative to the model's origins. Note that
+	 * changing the offsets will not change the pivot of the model.
 	 *
 	 * @param x
 	 *            the x-position of the shape
@@ -426,13 +584,11 @@ public class ModelRendererTurbo {
 		for (Polygon face : Poly) {
 			VertexUV[] verts = face.Vertex;
 			for (int j = 0; j < verts.length; j++) {
-				verts[j].X *= (x ? -1 : 1);
-				verts[j].Y *= (y ? -1 : 1);
-				verts[j].Z *= (z ? -1 : 1);
+				verts[j] = verts[j].multiplication((x ? -1 : 1), (y ? -1 : 1), (z ? -1 : 1));
 			}
 			if (x ^ y ^ z) {
 			}
-			//face.flipFace();
+			// face.flipFace();
 		}
 	}
 
@@ -445,32 +601,14 @@ public class ModelRendererTurbo {
 	public void compile() {
 		for (Polygon poly : Poly) {
 			for (VertexUV vert : poly.Vertex) {
-				//rotateX
-				double r = Math.toRadians(field_78795_f);
-				float f = vert.Y - rotationPointY;
-				float f1 = vert.Z - rotationPointZ;
-				vert.Y = (float) ((Math.cos(r) * f)+(Math.sin(r)*f));
-				vert.Z = (float) ((-Math.sin(r) * f1)+(Math.cos(r)*f1));
-				//rotateY
-				r = Math.toRadians(field_78796_g);
-				f = vert.X - rotationPointX;
-				f1 = vert.Z - rotationPointZ;
-				vert.X = (float) ((Math.cos(r) * f)+(Math.sin(r)*f));
-				vert.Z = (float) ((-Math.sin(r) * f1)+(Math.cos(r)*f1));
-				//rotateZ
-				r = Math.toRadians(field_78808_h);
-				f = vert.Y - rotationPointY;
-				f1 = vert.Z - rotationPointZ;
-				vert.Y = (float) ((Math.cos(r) * f)+(Math.sin(r)*f));
-				vert.Z = (float) ((-Math.sin(r) * f1)+(Math.cos(r)*f1));
+				vert.rotate(rotationPointX, rotationPointY, rotationPointZ, field_78795_f, field_78796_g, field_78808_h);
 			}
 		}
 	}
 
-
-	public float field_78795_f;// TODO rotateX
-	public float field_78796_g;// TODO rotateY
-	public float field_78808_h;// TODO rotateZ
+	public float field_78795_f;//  rotateX
+	public float field_78796_g;//  rotateY
+	public float field_78808_h;//  rotateZ
 
 	public float rotationPointX;
 	public float rotationPointY;

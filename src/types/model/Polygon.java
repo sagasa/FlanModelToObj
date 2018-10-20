@@ -20,11 +20,11 @@ public class Polygon {
 		return super.toString() + str.toString();
 	}
 
-	public void translate(float x, float y, float z) {
-		for (VertexUV ver : Vertex) {
-			ver.X += x;
-			ver.Y += y;
-			ver.Z += z;
+	public Polygon translate(float x, float y, float z) {
+		for (int i = 0; i < Vertex.length; i++) {
+			Vertex[i] = Vertex[i].translate(x, y, z);
+
 		}
+		return this;
 	}
 }
