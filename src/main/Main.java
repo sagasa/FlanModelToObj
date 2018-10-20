@@ -11,7 +11,7 @@ public class Main {
 		//ログ
 		try {
 			PrintStream log = new PrintStream("./log.txt");
-			System.setOut(log);
+		//	System.setOut(log);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

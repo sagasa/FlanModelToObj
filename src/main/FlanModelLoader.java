@@ -35,7 +35,6 @@ public class FlanModelLoader {
 
 	private File rootDir;
 	private URLClassLoader loader;
-	private Map<String, String> ModelNameMap = new HashMap<>();
 
 	private Map<String, String> ModelMap = new HashMap<>();
 
@@ -45,18 +44,6 @@ public class FlanModelLoader {
 			loader = URLClassLoader.newInstance(new URL[] { rootDir.toURI().toURL() });
 		} catch (MalformedURLException e1) {
 			e1.printStackTrace();
-		}
-		for (File file : listAll(new File(rootDir, "/com/flansmod/client/model"), new ArrayList<>())) {
-			String name = file.getName();
-			// モデルなら
-			if (name.endsWith(".class")) {
-				// System.out.println(file.getPath().split(rootDir.getName() +
-				// separator, 2)[1].replaceAll(separator, ".")
-				// .replace(".class", ""));
-				ModelNameMap.put(name.replace("Model", "").replace(".class", ""),
-						file.getPath().split(rootDir.getName() + separator, 2)[1].replaceAll(separator, ".")
-								.replace(".class", ""));
-			}
 		}
 		// 設定ファイルから読み込み
 		List<ModelInfo> infolist = new ArrayList<>();
@@ -70,27 +57,30 @@ public class FlanModelLoader {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
 		// Infoからモデルを出力
 		for (ModelInfo info : infolist) {
-			if (ModelNameMap.get(info.ModelName) == null) {
-				System.out.println("model not bind " + info.Name);
-				continue;
-			}
-
+			/*
+			 * if (ModelNameMap.get(info.ModelName) == null) {
+			 * System.out.println("model not bind " + info.Name); continue; } //
+			 */
 			String obj = null;
 			File outDir = null;
-			// Typeによって場合分け
-			switch (info.Type) {
-			case GUN:
-				obj = loadGunModel(info);
-				outDir = new File("./output/guns/" + info.Name.replaceAll("/", "-") + "/");
-				break;
-			case VEHICLE:
-				obj = loadVehicleModel(info);
-				outDir = new File("./output/vehicles/" + info.Name.replaceAll("/", "-") + "/");
+			try {
+				// Typeによって場合分け
+				switch (info.Type) {
+				case GUN:
+					obj = loadGunModel(info);
+					outDir = new File("./output/guns/" + info.Name.replaceAll("/", "-") + "/");
+					break;
+				case VEHICLE:
 
-				break;
+					obj = loadVehicleModel(info);
+
+					outDir = new File("./output/vehicles/" + info.Name.replaceAll("/", "-") + "/");
+					break;
+				}
+			} catch (ClassNotFoundException e1) {
+				System.out.println("model not found " + info.Name);
 			}
 			if (obj == null || outDir == null) {
 				System.out.println("cant load model " + info.Name);
@@ -162,7 +152,8 @@ public class FlanModelLoader {
 				}
 				if (split[0].trim().equalsIgnoreCase("Model")) {
 					String[] split1 = split[1].trim().split("\\.");
-					model = split1[split1.length - 1];
+					split1[split1.length - 1] = "Model" + split1[split1.length - 1];
+					model = String.join(".", split1);
 				} else if (split[0].trim().equalsIgnoreCase("Texture")) {
 					texture = split[1].trim();
 				} else if (split[0].trim().equalsIgnoreCase("ModelScale")) {
@@ -172,15 +163,15 @@ public class FlanModelLoader {
 				}
 			}
 			reader.close();
+			in.close();
 		} catch (IOException e) {
 			System.out.println(e.getStackTrace());
 		}
-
 		return new ModelInfo(type, name, model, texture, modelScale);
 	}
 
 	/** 設定ファイルからobjモデルを返す */
-	private String loadGunModel(ModelInfo modelInfo) {
+	private String loadGunModel(ModelInfo modelInfo) throws ClassNotFoundException {
 
 		if (modelInfo == null) {
 			return null;
@@ -189,22 +180,22 @@ public class FlanModelLoader {
 		ModelGun model;
 		ObjBilder bilder = new ObjBilder();
 		try {
-			model = (ModelGun) loader.loadClass(ModelNameMap.get(modelInfo.ModelName)).newInstance();
+			model = (ModelGun) loader.loadClass("com.flansmod.client.model." + modelInfo.ModelName).newInstance();
 			model.compile();
 			for (Field field : ModelGun.class.getFields()) {
 				if (field.getType().equals(ModelRendererTurbo[].class)) {
 					bilder.addPart(toPolygon((ModelRendererTurbo[]) field.get(model)), field.getName());
 				}
 			}
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			System.out.println(e.getStackTrace());
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
 			return null;
 		}
 		return bilder.flash();
 	}
 
 	/** 設定ファイルからobjモデルを返す */
-	private String loadVehicleModel(ModelInfo modelInfo) {
+	private String loadVehicleModel(ModelInfo modelInfo) throws ClassNotFoundException {
 
 		if (modelInfo == null) {
 			return null;
@@ -213,7 +204,7 @@ public class FlanModelLoader {
 		ModelVehicle model;
 		ObjBilder bilder = new ObjBilder();
 		try {
-			model = (ModelVehicle) loader.loadClass(ModelNameMap.get(modelInfo.ModelName)).newInstance();
+			model = (ModelVehicle) loader.loadClass("com.flansmod.client.model." + modelInfo.ModelName).newInstance();
 			model.compile();
 			for (Field field : ModelVehicle.class.getFields()) {
 				if (field.getType().equals(ModelRendererTurbo[].class)) {
@@ -221,8 +212,7 @@ public class FlanModelLoader {
 				}
 			}
 		} catch (NoSuchFieldError e) {
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			System.out.println(e.getStackTrace());
+		} catch (InstantiationException | IllegalAccessException e) {
 			return null;
 		}
 		return bilder.flash();
