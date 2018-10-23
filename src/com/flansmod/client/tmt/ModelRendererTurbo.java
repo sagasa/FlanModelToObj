@@ -1,7 +1,6 @@
 package com.flansmod.client.tmt;
 
 import java.util.ArrayList;
-import java.util.List;
 import net.minecraft.client.model.ModelBase;
 import types.model.Polygon;
 import types.model.VertexUV;
@@ -22,8 +21,8 @@ import types.model.VertexUV;
 public class ModelRendererTurbo {
 	/**
 	 * Creates a new ModelRenderTurbo object. It requires the coordinates of the
-	 * position of the texture, but also allows you to specify the width and
-	 * height of the texture, allowing you to use bigger textures instead.
+	 * position of the texture, but also allows you to specify the width and height
+	 * of the texture, allowing you to use bigger textures instead.
 	 */
 	public ModelRendererTurbo(ModelBase modelbase, int offsetX, int offsetY, int textureX, int textureY) {
 		this.textureOffsetX = offsetX;
@@ -32,11 +31,6 @@ public class ModelRendererTurbo {
 		this.textureY = textureY;
 	}
 
-	public void func_78793_a(float arg0, float arg1, float arg2) {
-		for (Polygon poly : Poly) {
-			poly.translate(arg0, arg1, arg2);
-		}
-	}
 
 	public void addShape3D(float x, float y, float z, Coord2D[] coordinates, float depth, int shapeTextureWidth,
 			int shapeTextureHeight, int sideTextureWidth, int sideTextureHeight, int direction) {
@@ -108,13 +102,13 @@ public class ModelRendererTurbo {
 			float[] faceLengths) {
 		Coord2D[] coords = shape.coords;
 
-		if(faceLengths != null && faceLengths.length < coords.length)
+		if (faceLengths != null && faceLengths.length < coords.length)
 			faceLengths = null;
-		
+
 		Coord2D exVec = new Coord2D(0, 0);
 		exVec.zCoord = -depth;
-		exVec.rotate(rotX, rotY, rotZ);
-		
+		exVec = exVec.rotate(rotX, rotY, rotZ);
+
 		VertexUV[] vertsTop = new VertexUV[coords.length];
 		VertexUV[] vertsBottom = new VertexUV[coords.length];
 		VertexUV[][] verts = new VertexUV[2][coords.length];
@@ -122,9 +116,8 @@ public class ModelRendererTurbo {
 
 		for (int i = 0; i < coords.length; i++) {
 			/** 回転適応済み */
-			Coord2D curCoord = coords[i].rotate(rotX, rotY, rotZ);;
+			Coord2D curCoord = coords[i].rotate(rotX, rotY, rotZ);
 			Coord2D nextCoord = coords[(i + 1) % coords.length];
-			System.out.println(coords[i]+" "+curCoord);
 
 			// 多角形部分用UV
 			float u0 = (textureOffsetX + curCoord.uCoord) / textureX;
@@ -166,8 +159,8 @@ public class ModelRendererTurbo {
 
 			float u0 = (ratioLength * sideTextureWidth + textureOffsetX) / textureX;
 			float u1 = (ratioPosition * sideTextureWidth + textureOffsetX) / textureX;
-			float v0 = (textureOffsetY + shapeTextureHeight) / textureY;
-			float v1 = (textureOffsetY + shapeTextureHeight + sideTextureHeight) / textureY;
+			float v0 = 1-((textureOffsetY + shapeTextureHeight) / textureY);
+			float v1 = 1-((textureOffsetY + shapeTextureHeight + sideTextureHeight) / textureY);
 
 			Poly.add(new Polygon(
 					new VertexUV[] { ver0.setUV(u1, v0), ver1.setUV(u1, v1), ver2.setUV(u0, v1), ver3.setUV(u0, v0) }));
@@ -190,8 +183,7 @@ public class ModelRendererTurbo {
 
 		int m = 1;
 		/*
-		 * int m = (mirror ? -1 : 1); if(mirror) { float f7 = f4; f4 = x; x =
-		 * f7; } //
+		 * int m = (mirror ? -1 : 1); if(mirror) { float f7 = f4; f4 = x; x = f7; } //
 		 */
 
 		float[] v = { x, y, z };
@@ -389,16 +381,6 @@ public class ModelRendererTurbo {
 			break;
 		}
 
-		float[] qValues = new float[] { Math.abs((v[0] - v1[0]) / (v3[0] - v2[0])),
-				Math.abs((v[0] - v1[0]) / (v4[0] - v5[0])), Math.abs((v4[0] - v5[0]) / (v7[0] - v6[0])),
-				Math.abs((v3[0] - v2[0]) / (v7[0] - v6[0])),
-
-				Math.abs((v[1] - v3[1]) / (v1[1] - v2[1])), Math.abs((v4[1] - v7[1]) / (v5[1] - v6[1])),
-				Math.abs((v[1] - v3[1]) / (v4[1] - v7[1])), Math.abs((v1[1] - v2[1]) / (v5[1] - v6[1])),
-
-				Math.abs((v[2] - v4[2]) / (v1[2] - v5[2])), Math.abs((v[2] - v4[2]) / (v3[2] - v7[2])),
-				Math.abs((v1[2] - v5[2]) / (v2[2] - v6[2])), Math.abs((v3[2] - v7[2]) / (v2[2] - v6[2])) };
-
 		addRectShape(v, v1, v2, v3, v4, v5, v6, v7, w, h, d);
 	}
 
@@ -582,8 +564,8 @@ public class ModelRendererTurbo {
 	}
 
 	/**
-	 * Sets the position of the shape, relative to the model's origins. Note
-	 * that changing the offsets will not change the pivot of the model.
+	 * Sets the position of the shape, relative to the model's origins. Note that
+	 * changing the offsets will not change the pivot of the model.
 	 *
 	 * @param x
 	 *            the x-position of the shape
@@ -592,7 +574,7 @@ public class ModelRendererTurbo {
 	 * @param z
 	 *            the z-position of the shape
 	 */
-	public void setPosition(float x, float y, float z) {
+	public void func_78793_a(float x, float y, float z) {
 		rotationPointX = x;
 		rotationPointY = y;
 		rotationPointZ = z;
@@ -630,9 +612,12 @@ public class ModelRendererTurbo {
 
 	public void compile() {
 		for (Polygon poly : Poly) {
-			for (VertexUV vert : poly.Vertex) {
-				vert.rotate(rotationPointX, rotationPointY, rotationPointZ, field_78795_f, field_78796_g,
-						field_78808_h);
+			poly.translate(rotationPointX, rotationPointY, rotationPointZ);
+		}
+		for (Polygon poly : Poly) {
+			for (int i = 0; i < poly.Vertex.length; i++) {
+				poly.Vertex[i] = poly.Vertex[i].rotate(rotationPointX, rotationPointY, rotationPointZ, field_78795_f,
+						field_78796_g, field_78808_h);
 			}
 		}
 	}

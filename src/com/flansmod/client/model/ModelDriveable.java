@@ -25,15 +25,6 @@ public class ModelDriveable extends ModelBase
 		gunModels.put(name, gunModel);
 	}
 
-	protected void flip(ModelRendererTurbo[] model)
-	{
-		for(ModelRendererTurbo part : model)
-		{
-			part.doMirror(false, true, true);
-			part.setRotationPoint(part.rotationPointX, - part.rotationPointY, - part.rotationPointZ);
-		}
-	}
-
 	public void flipAll()
 	{
 		flip(bodyModel);
