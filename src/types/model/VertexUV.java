@@ -27,6 +27,10 @@ public class VertexUV {
 		V = coord2d.vCoord;
 	}
 
+	public VertexUV setUV(float u,float v) {
+		return new VertexUV(X,Y,Z,u,v);
+	}
+
 	public VertexUV translate(float x, float y, float z) {
 		return new VertexUV(X + x, Y + y, Z + z, U, V);
 	}

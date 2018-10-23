@@ -22,8 +22,8 @@ import types.model.VertexUV;
 public class ModelRendererTurbo {
 	/**
 	 * Creates a new ModelRenderTurbo object. It requires the coordinates of the
-	 * position of the texture, but also allows you to specify the width and
-	 * height of the texture, allowing you to use bigger textures instead.
+	 * position of the texture, but also allows you to specify the width and height
+	 * of the texture, allowing you to use bigger textures instead.
 	 */
 	public ModelRendererTurbo(ModelBase modelbase, int offsetX, int offsetY, int textureX, int textureY) {
 		this.textureOffsetX = offsetX;
@@ -117,16 +117,23 @@ public class ModelRendererTurbo {
 		VertexUV[][] verts = new VertexUV[2][coords.length];
 
 		for (int i = 0; i < coords.length; i++) {
-			coords[i].rotate(rotX, rotY, rotZ);
+			Coord2D coord = coords[i];
+			coord.rotate(rotX, rotY, rotZ);
 
-			VertexUV top = new VertexUV(coords[0]).translate(x, y, z);
-			VertexUV bottom = new VertexUV(coords[0]).translate(x, y, z).translate((float) exVec.xCoord,
-					(float) exVec.yCoord, (float) exVec.zCoord);
+			// 多角形部分用UV
+			float u0 = (textureOffsetX + coord.uCoord) / textureX;
+			float u1 = (textureOffsetX + coord.uCoord + shapeTextureWidth) / textureX;
+			float v = 1-((textureOffsetY + coord.vCoord) / textureY);
+
+			VertexUV top = new VertexUV(coords[i]).translate(x, y, z).setUV(u0, v);
+			VertexUV bottom = new VertexUV(coords[i]).translate(x, y, z).translate((float) exVec.xCoord,
+					(float) exVec.yCoord, (float) exVec.zCoord).setUV(u1, v);
 			vertsTop[i] = top;
 			vertsBottom[coords.length - i - 1] = bottom;
 			verts[0][i] = top;
 			verts[1][i] = bottom;
 		}
+
 		for (int i = 0; i < coords.length; i++) {
 			if (i == 0) {
 				Poly.add(new Polygon(new VertexUV[] { verts[0][coords.length - 1], verts[0][0], verts[1][0],
@@ -153,8 +160,7 @@ public class ModelRendererTurbo {
 
 		int m = 1;
 		/*
-		 * int m = (mirror ? -1 : 1); if(mirror) { float f7 = f4; f4 = x; x =
-		 * f7; } //
+		 * int m = (mirror ? -1 : 1); if(mirror) { float f7 = f4; f4 = x; x = f7; } //
 		 */
 
 		float[] v = { x, y, z };
@@ -545,8 +551,8 @@ public class ModelRendererTurbo {
 	}
 
 	/**
-	 * Sets the position of the shape, relative to the model's origins. Note
-	 * that changing the offsets will not change the pivot of the model.
+	 * Sets the position of the shape, relative to the model's origins. Note that
+	 * changing the offsets will not change the pivot of the model.
 	 *
 	 * @param x
 	 *            the x-position of the shape

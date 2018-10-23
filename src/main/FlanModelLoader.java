@@ -88,7 +88,8 @@ public class FlanModelLoader {
 			}
 			outDir.mkdirs();
 			try {
-				FileWriter modelwriter = new FileWriter(new File(outDir, info.ModelName + ".obj"));
+				String[] split = info.ModelName.split("\\.");
+				FileWriter modelwriter = new FileWriter(new File(outDir,  split[split.length-1]+ ".obj"));
 				modelwriter.write(obj);
 				modelwriter.close();
 
