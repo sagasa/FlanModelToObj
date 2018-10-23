@@ -22,8 +22,8 @@ import types.model.VertexUV;
 public class ModelRendererTurbo {
 	/**
 	 * Creates a new ModelRenderTurbo object. It requires the coordinates of the
-	 * position of the texture, but also allows you to specify the width and height
-	 * of the texture, allowing you to use bigger textures instead.
+	 * position of the texture, but also allows you to specify the width and
+	 * height of the texture, allowing you to use bigger textures instead.
 	 */
 	public ModelRendererTurbo(ModelBase modelbase, int offsetX, int offsetY, int textureX, int textureY) {
 		this.textureOffsetX = offsetX;
@@ -108,39 +108,69 @@ public class ModelRendererTurbo {
 			float[] faceLengths) {
 		Coord2D[] coords = shape.coords;
 
+		if(faceLengths != null && faceLengths.length < coords.length)
+			faceLengths = null;
+		
 		Coord2D exVec = new Coord2D(0, 0);
 		exVec.zCoord = -depth;
 		exVec.rotate(rotX, rotY, rotZ);
-
+		
 		VertexUV[] vertsTop = new VertexUV[coords.length];
 		VertexUV[] vertsBottom = new VertexUV[coords.length];
 		VertexUV[][] verts = new VertexUV[2][coords.length];
+		float totalLength = 0;
 
 		for (int i = 0; i < coords.length; i++) {
-			Coord2D coord = coords[i];
-			coord.rotate(rotX, rotY, rotZ);
+			/** 回転適応済み */
+			Coord2D curCoord = coords[i].rotate(rotX, rotY, rotZ);;
+			Coord2D nextCoord = coords[(i + 1) % coords.length];
+			System.out.println(coords[i]+" "+curCoord);
 
 			// 多角形部分用UV
-			float u0 = (textureOffsetX + coord.uCoord) / textureX;
-			float u1 = (textureOffsetX + coord.uCoord + shapeTextureWidth) / textureX;
-			float v = 1-((textureOffsetY + coord.vCoord) / textureY);
+			float u0 = (textureOffsetX + curCoord.uCoord) / textureX;
+			float u1 = (textureOffsetX + curCoord.uCoord + shapeTextureWidth) / textureX;
+			float v = 1 - ((textureOffsetY + curCoord.vCoord) / textureY);
 
-			VertexUV top = new VertexUV(coords[i]).translate(x, y, z).setUV(u0, v);
-			VertexUV bottom = new VertexUV(coords[i]).translate(x, y, z).translate((float) exVec.xCoord,
-					(float) exVec.yCoord, (float) exVec.zCoord).setUV(u1, v);
+			VertexUV top = new VertexUV(curCoord).translate(x, y, z).setUV(u0, v);
+			VertexUV bottom = new VertexUV(curCoord).translate(x, y, z)
+					.translate((float) exVec.xCoord, (float) exVec.yCoord, (float) exVec.zCoord).setUV(u1, v);
 			vertsTop[i] = top;
 			vertsBottom[coords.length - i - 1] = bottom;
 			verts[0][i] = top;
 			verts[1][i] = bottom;
+
+			if (faceLengths != null)
+				totalLength += faceLengths[i];
+			else
+				totalLength += Math.sqrt(Math.pow(curCoord.xCoord - nextCoord.xCoord, 2)
+						+ Math.pow(curCoord.yCoord - nextCoord.yCoord, 2));
+
 		}
 
+		float currentLengthPosition = totalLength;
+
 		for (int i = 0; i < coords.length; i++) {
-			if (i == 0) {
-				Poly.add(new Polygon(new VertexUV[] { verts[0][coords.length - 1], verts[0][0], verts[1][0],
-						verts[1][coords.length - 1] }));
-			} else {
-				Poly.add(new Polygon(new VertexUV[] { verts[0][i - 1], verts[0][i], verts[1][i], verts[1][i - 1] }));
-			}
+			Coord2D curCoord = coords[i];
+			Coord2D nextCoord = coords[(i + 1) % coords.length];
+			VertexUV ver0 = verts[0][i];
+			VertexUV ver1 = verts[1][i];
+			VertexUV ver2 = verts[1][(i + 1) % coords.length];
+			VertexUV ver3 = verts[0][(i + 1) % coords.length];
+
+			float currentLength = (float) Math.sqrt(
+					Math.pow(curCoord.xCoord - nextCoord.xCoord, 2) + Math.pow(curCoord.yCoord - nextCoord.yCoord, 2));
+			if (faceLengths != null)
+				currentLength = faceLengths[faceLengths.length - i - 1];
+			float ratioPosition = currentLengthPosition / totalLength;
+			float ratioLength = (currentLengthPosition - currentLength) / totalLength;
+
+			float u0 = (ratioLength * sideTextureWidth + textureOffsetX) / textureX;
+			float u1 = (ratioPosition * sideTextureWidth + textureOffsetX) / textureX;
+			float v0 = (textureOffsetY + shapeTextureHeight) / textureY;
+			float v1 = (textureOffsetY + shapeTextureHeight + sideTextureHeight) / textureY;
+
+			Poly.add(new Polygon(
+					new VertexUV[] { ver0.setUV(u1, v0), ver1.setUV(u1, v1), ver2.setUV(u0, v1), ver3.setUV(u0, v0) }));
 		}
 		Poly.add(new Polygon(vertsTop));
 		Poly.add(new Polygon(vertsBottom));
@@ -160,7 +190,8 @@ public class ModelRendererTurbo {
 
 		int m = 1;
 		/*
-		 * int m = (mirror ? -1 : 1); if(mirror) { float f7 = f4; f4 = x; x = f7; } //
+		 * int m = (mirror ? -1 : 1); if(mirror) { float f7 = f4; f4 = x; x =
+		 * f7; } //
 		 */
 
 		float[] v = { x, y, z };
@@ -551,8 +582,8 @@ public class ModelRendererTurbo {
 	}
 
 	/**
-	 * Sets the position of the shape, relative to the model's origins. Note that
-	 * changing the offsets will not change the pivot of the model.
+	 * Sets the position of the shape, relative to the model's origins. Note
+	 * that changing the offsets will not change the pivot of the model.
 	 *
 	 * @param x
 	 *            the x-position of the shape

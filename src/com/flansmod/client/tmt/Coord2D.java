@@ -6,21 +6,24 @@ public class Coord2D
 {
 	public Coord2D(double x, double y)
 	{
-		xCoord = x;
-		yCoord = y;
-		uCoord = (int)Math.floor(x);
-		vCoord = (int)Math.floor(y);
+		this(x, y, (int)Math.floor(x), (int)Math.floor(y));
 	}
 
 
 	public Coord2D(double x, double y, int u, int v)
 	{
-		this(x, y);
+		this(x,y,0d,u,v);
+	}
+	public Coord2D(double x, double y,double z, int u, int v)
+	{
+		xCoord = x;
+		yCoord = y;
+		zCoord = z;
 		uCoord = u;
 		vCoord = v;
 	}
 
-	public void rotate(float xRot, float yRot, float zRot)
+	public Coord2D rotate(float xRot, float yRot, float zRot)
 	{
 		float x = xRot;
 		float y = yRot;
@@ -49,6 +52,7 @@ public class Coord2D
 		xCoord = zx;
 		yCoord = zy;
 		zCoord = yz;
+		return new Coord2D(zx, zy, yz,uCoord ,vCoord);
 	}
 
 	public double xCoord;
