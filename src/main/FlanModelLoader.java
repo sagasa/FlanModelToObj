@@ -22,6 +22,7 @@ import java.util.Map;
 import com.flansmod.client.model.ModelGun;
 import com.flansmod.client.model.ModelVehicle;
 import com.flansmod.client.tmt.ModelRendererTurbo;
+
 import types.model.Polygon;
 
 /** パックのルートディレクトリでインスタンス化して使う */
@@ -40,6 +41,76 @@ public class FlanModelLoader {
 
 	public FlanModelLoader(File rootdir) {
 		rootDir = rootdir;
+	}
+
+	public void read(ModelType type,String str) {
+		try {
+			loader = URLClassLoader.newInstance(new URL[] { rootDir.toURI().toURL() });
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		}
+		// 設定ファイルから読み込み
+		List<ModelInfo> infolist = new ArrayList<>();
+		try {
+			infolist.add(readModelInfo(type, new FileInputStream(new File(rootDir, str))));
+		} catch (FileNotFoundException e2) {
+			e2.printStackTrace();
+		}
+		// Infoからモデルを出力
+		for (ModelInfo info : infolist) {
+			/*
+			 * if (ModelNameMap.get(info.ModelName) == null) {
+			 * System.out.println("model not bind " + info.Name); continue; } //
+			 */
+			String obj = null;
+			File outDir = null;
+			try {
+				// Typeによって場合分け
+				switch (info.Type) {
+				case GUN:
+					obj = loadGunModel(info);
+					outDir = new File("./output/guns/" + info.Name.replaceAll("/", "-") + "/");
+					break;
+				case VEHICLE:
+					obj = loadVehicleModel(info);
+					outDir = new File("./output/vehicles/" + info.Name.replaceAll("/", "-") + "/");
+					break;
+				}
+			} catch (ClassNotFoundException e1) {
+				System.out.println("model not found " + info.Name);
+			}
+			if (obj == null || outDir == null) {
+				System.out.println("cant load model " + info.Name);
+				continue;
+			}
+			outDir.mkdirs();
+			try {
+				String[] split = info.ModelName.split("\\.");
+				FileWriter modelwriter = new FileWriter(new File(outDir,  split[split.length-1]+ ".obj"));
+				modelwriter.write(obj);
+				modelwriter.close();
+
+				FileWriter mtlwriter = new FileWriter(new File(outDir, "texture.mtl"));
+				mtlwriter.write(ObjBilder.getMtl(info.TextureName));
+				mtlwriter.close();
+
+				File txture = new File(rootDir, "assets/flansmod/skins/" + info.TextureName + ".png");
+				if (txture.exists()) {
+					// texture.mtl
+					new File(outDir, info.TextureName + ".png").delete();
+					Files.copy(txture.toPath(), new File(outDir, info.TextureName + ".png").toPath());
+				} else {
+					System.out.println("missing texture " + txture.getPath());
+				}
+			} catch (IOException e) {
+				System.out.println("errer in writing model " + info.Name);
+				e.printStackTrace();
+			}
+			System.out.println("load sucsessful " + info.Name);
+		}
+	}
+
+	public void readAll() {
 		try {
 			loader = URLClassLoader.newInstance(new URL[] { rootDir.toURI().toURL() });
 		} catch (MalformedURLException e1) {
@@ -73,9 +144,7 @@ public class FlanModelLoader {
 					outDir = new File("./output/guns/" + info.Name.replaceAll("/", "-") + "/");
 					break;
 				case VEHICLE:
-
 					obj = loadVehicleModel(info);
-
 					outDir = new File("./output/vehicles/" + info.Name.replaceAll("/", "-") + "/");
 					break;
 				}
@@ -133,7 +202,7 @@ public class FlanModelLoader {
 		}
 	}
 
-	private enum ModelType {
+	public enum ModelType {
 		GUN, VEHICLE
 	}
 

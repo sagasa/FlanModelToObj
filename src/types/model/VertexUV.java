@@ -27,8 +27,8 @@ public class VertexUV {
 		V = coord2d.vCoord;
 	}
 
-	public VertexUV setUV(float u,float v) {
-		return new VertexUV(X,Y,Z,u,v);
+	public VertexUV setUV(float u, float v) {
+		return new VertexUV(X, Y, Z, u, v);
 	}
 
 	public VertexUV translate(float x, float y, float z) {
@@ -40,30 +40,22 @@ public class VertexUV {
 	}
 
 	public VertexUV rotate(float pointX, float pointY, float pointZ, float rotateX, float rotateY, float rotateZ) {
-		// rotateX
-		double r = Math.toRadians(rotateX);
+		float x = X-pointX;
+		float y = Y-pointY;
+		float z = Z-pointZ;
 
-		float x = X;
-		float y = Y;
-		float z = Z;
+		//Z軸回転
+		x = (float) (x * Math.cos(rotateZ) - y * Math.sin(rotateZ));
+		y = (float) (x * Math.sin(rotateZ) + y * Math.cos(rotateZ));
 
-		float f = y - pointY;
-		float f1 = z - pointZ;
-		y = (float) ((Math.cos(r) * f) + (Math.sin(r) * f));
-		z = (float) ((-Math.sin(r) * f1) + (Math.cos(r) * f1));
-		// rotateY
-		r = Math.toRadians(rotateY);
-		f = x - pointX;
-		f1 = z - pointZ;
-		x = (float) ((Math.cos(r) * f) + (Math.sin(r) * f));
-		z = (float) ((-Math.sin(r) * f1) + (Math.cos(r) * f1));
-		// rotateZ
-		r = Math.toRadians(rotateZ);
-		f = x - pointX;
-		f1 = y - pointY;
-		x = (float) ((Math.cos(r) * f) + (Math.sin(r) * f));
-		y = (float) ((-Math.sin(r) * f1) + (Math.cos(r) * f1));
-		return new VertexUV(x, y, z, U, V);
+		//Y軸回転
+		x = (float) (x * Math.cos(rotateY) + z * Math.sin(rotateY));
+		z = (float) (-x * Math.sin(rotateY) + z * Math.cos(rotateY));
+
+		//X軸回転
+		y = (float) (y * Math.cos(rotateX) - z * Math.sin(rotateX));
+		z = (float) (y * Math.sin(rotateX) + z * Math.cos(rotateX));
+		return new VertexUV(x+pointX, y+pointY, z+pointZ, U, V);
 	}
 
 	public final float U;

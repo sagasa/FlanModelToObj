@@ -1,6 +1,7 @@
 package com.flansmod.client.tmt;
 
 import java.util.ArrayList;
+
 import net.minecraft.client.model.ModelBase;
 import types.model.Polygon;
 import types.model.VertexUV;
@@ -575,9 +576,7 @@ public class ModelRendererTurbo {
 	 *            the z-position of the shape
 	 */
 	public void func_78793_a(float x, float y, float z) {
-		rotationPointX = x;
-		rotationPointY = y;
-		rotationPointZ = z;
+		setRotationPoint(x, y, z);
 	}
 
 	/**
@@ -593,6 +592,7 @@ public class ModelRendererTurbo {
 	}
 
 	public void doMirror(boolean x, boolean y, boolean z) {
+		System.out.println("doMirror "+x+" "+y+" "+z);
 		for (Polygon face : Poly) {
 			VertexUV[] verts = face.Vertex;
 			for (int j = 0; j < verts.length; j++) {
