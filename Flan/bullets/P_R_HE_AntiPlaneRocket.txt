@@ -1,0 +1,46 @@
+Name [HE]Anti-Plane Rocket
+ShortName he_plane_rocket
+Description DamageVsPlayer 2_DamageVsVehicles 25_DamageVsPlanes 100 Explosion 2_ExplosionDamageVsLiving 0.25_ExplosionDamageVsPlane 0.75_ExplosionDamageVsVehicle 0.25
+
+Model Manus_WW2.Misc.WW2_Misc_HVAR_1
+Texture Skin_WW2_Misc_HVAR
+
+Colour 255 255 255
+Icon Icon_WW2_Misc_RS82
+
+FallSpeed 2.5
+
+WeaponType Missile
+
+MaxStackSize 1
+
+RoundsPerItem 16
+
+DamageVsLiving 2
+DamageVsPlayer 2
+DamageVsVehicles 50
+DamageVsPlanes 100
+
+ExplosionRadius 2
+ExplosionDamageVsLiving 0.15
+ExplosionDamageVsPlayer 0.15
+ExplosionDamageVsPlanes 5.0
+ExplosionDamageVsVehicles 1.0
+
+ExplodeOnImpact True
+Fuse 600
+FlakParticles 0
+
+Fire 0
+BreaksGlass False
+
+HitBoxSize 0.1
+HitSound explcls4
+HitSoundRange 400
+HitSoundEnable true
+EntityHitSoundEnable true
+
+Penetrates False
+TrailParticles true
+TrailParticleType fireworksSpark
+DragInAir 0.99

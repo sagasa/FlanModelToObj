@@ -16,7 +16,7 @@ NumBullets 1
 Damage 2
 MeleeDamage 1
 //The higher this value, the more the bullets spread
-Accuracy 2
+Accuracy 0.75
 //Time in ticks between rounds
 ShootDelay 2
 ShootSound MG42_Fire

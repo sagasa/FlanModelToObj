@@ -59,8 +59,8 @@ Primary Shell
 Secondary Missile
 //Time between shots in 1/20ths of seconds
 PlaceTimePrimary 60
-ShootDelayPrimary 75
-ReloadTimePrimary 75
+ShootDelayPrimary 70
+ReloadTimePrimary 70
 PlaceTimeSecondary 160
 ShootDelaySecondary 2
 ReloadTimeSecondary 140

@@ -1,7 +1,7 @@
 // ------------------------------------------------------ Naming ------------------------------------------------------
-Name [AAG]40mm_Bofors
+Name [AAG]40mm Bofors
 ShortName bofors
-Description CoreHP 800_[AA]40mm AAGun 20Round Ammo
+Description CoreHP 800_[AA]AAGun 20Round Ammo
 // ------------------------------------------------------ Visuals ------------------------------------------------------
 Icon AAGun_40mm_Bofors
 Model cvts.40mm_BoforsKai

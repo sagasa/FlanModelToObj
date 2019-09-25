@@ -21,7 +21,7 @@ Damage 1.1
 IgnoreArmorProbability 1.0
 IgnoreArmorDamageFactor 1.0
 //Modifiers
-MoveSpeedModifier 0.8
+MoveSpeedModifier 0.85
 //The higher this value, the more the bullets spread
 //AccuracyInADS 1
 Accuracy 1

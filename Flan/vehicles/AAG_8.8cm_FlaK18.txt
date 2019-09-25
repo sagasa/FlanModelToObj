@@ -1,7 +1,7 @@
 // ------------------------------------------------------ Naming ------------------------------------------------------
 Name [AAG]8.8cm FlaK18
 ShortName flak18
-Description Placeable on sponge._CoreHP 800_[AA]8.8cm AAGun Shell_[HE][HT1]HeavyTank Shell
+Description Placeable on sponge._CoreHP 800_[AA]High-Caliber AAGun Shell_[APHE]High-Caliber AAGun Shell
 // ------------------------------------------------------ Visuals ------------------------------------------------------
 Icon Icon_WW2_AAGun_Flak88_1A
 Model cvts.Flak88aKai
@@ -33,9 +33,9 @@ Tank true
 Primary Shell
 Secondary 
 //Time between shots in 1/20ths of seconds
-PlaceTimePrimary 80
-ShootDelayPrimary 80
-ReloadTimePrimary 80
+PlaceTimePrimary 75
+ShootDelayPrimary 75
+ReloadTimePrimary 75
 PlaceTimeSecondary 
 ShootDelaySecondary 
 ReloadTimeSecondary 
@@ -81,7 +81,7 @@ BombSlots 0
 MissileSlots 2
 AllowAllAmmo False
 AddAmmo aa_flak18_shell
-AddAmmo he_ht1_shell
+AddAmmo aphe_flak18_shell
 AddAmmo dummyammo
 //Fuel Tank Size (1 point of fuel will keep one propeller going with throttle at 1 for 1 tick)
 FuelTankSize 0
@@ -117,7 +117,7 @@ ReloadSoundSecondary None
 //Each section of the plane may have many parts
 //The sections are tailWheel, tail, bay, topWing, leftWingWheel, leftWing, rightWingWheel,
 //rightWing, nose, turret, coreWheel, core
-AddRecipeParts turret 2 iron 2 iron_nugget
+AddRecipeParts core 2 iron 2 iron_nugget
 //Dye colours are "black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "lightBlue", "magenta", "orange", "white"
 //AddDye 0 gray
 // ------------------------------------------------------ Health and hitboxes ------------------------------------------------------

@@ -1,6 +1,6 @@
 Name [APHE][MT2]High-Caliber MediumTank Shell
 ShortName aphe_mt2_shell
-Description RoundPerItem 20_DamageVsPlayer 50_DamageVsVehicles 2750_DamageVsPlanes 1200_Explosion 1.5_ExplosionDamageVsPlayer 0.5_ExplosionDamageVsPlane 0.5_ExplosionDamageVsVehicle 0.5
+Description RoundPerItem 20_DamageVsPlayer 50_DamageVsVehicles 2750_DamageVsPlanes 1200_Explosion 2_ExplosionDamageVsPlayer 0.5_ExplosionDamageVsPlane 0.5_ExplosionDamageVsVehicle 0.5
 Model cvts.MGBullet2
 Texture MGBullet2_Yellow
 //Colour of icon and model

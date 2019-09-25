@@ -42,6 +42,7 @@ item.t-70.name=[USSR][LT2]T-70
 item.pz38t.name=[GER][LT2]Pz.Kpfw.38(t)
 item.crusader.name=[UK][LT2]Cruiser Crusader Mk.III
 item.b1.name=[FR][LT2]B1.bis HeavyTank
+item.m14mt.name=[ITL][LT2]M14/41 MediumTank
 
 item.cromwellmk4.name=[UK][MT1]Cruiser Cromwell Mk.IV
 item.luchs.name=[GER][LT1]Pz.Kpfw.II Ausf.L Luchs
@@ -105,6 +106,8 @@ item.su-122.name=[USSR][SPG1]SU-122
 item.flakvierling38.name=[AAG]2cm Flakvierling38
 item.bofors.name=[AAG]40mm Bofors
 item.flak18.name=[AAG]8.8cm FlaK18
+item.da9053.name=[AAG]DA 90/53
+item.acda9053.name=[ITL][SPAAG]Autocanone DA 90/53
 
 item.zis-3.name=[USSR][FG]ZiS-3
 item.type90.name=[JPN][FG]Type90
@@ -116,7 +119,7 @@ item.lg40.name=[RCLG]10.5cm LG40
 item.wurfgerat40.name=[MRL]28cm Wurfgerat40
 item.he_wurfgerat40_rocket.name=[HE]28cm Wurfgerat40 Rocket
 
-item.28cm_hanomag.name=[SPG]28cm Sd.Kfz.251/1 Wurfrahmen 40
+item.28cm_hanomag.name=[SPG]Sd.Kfz.251/1 Wurfrahmen 40
 
 item.ml20.name=[HZ]ML-30
 
@@ -136,7 +139,7 @@ item.he_lt1_shell.name=[HE][LT1]Low-Caliber LightTank Shell
 item.aa_gunboat_shell.name=[AA][GB]Gunboat AAGun Shell
 
 item.he_bofors_ammo.name=Baby,Please Craft Me.(40mm AAGun Ammo)
-item.aa_bofors_ammo.name=[AA]40mm AAGun 20Round Shell
+item.aa_bofors_ammo.name=[AA]AAGun 5Round Shell
 
 item.aphe_lt2_shell.name=[APHE][LT2]LightTank Shell
 item.he_lt2_shell.name=[HE][LT2]LightTank Shell
@@ -164,7 +167,8 @@ item.he_ht2_shell.name=[HE][HT2]High-Caliber HeavyTank Shell
 item.aphe_sht_shell.name=[APHE][SHT]SuperHeavyTank Shell
 item.he_sht_shell.name=[HE][SHT]SuperHeavyTank Shell
 
-item.aa_flak18_shell.name=[AA]8.8cm AAGun Shell
+item.aa_flak18_shell.name=[AA]High-Caliber AAGun Shell
+item.aphe_flak18_shell.name=[APHE]High-Caliber AAGun Shell
 
 item.heat_it1_shell.name=[HEAT][IT1]InfantryTank Shell
 item.he_it1_shell.name=[HE][IT1]InfantryTank Shell
@@ -177,7 +181,7 @@ item.he_spg1_shell.name=[HE][SPG1]Howitzer Shell
 item.aphe_spg2_shell.name=[APHE][SPG2]Heavy Howitzer Shell
 item.he_spg2_shell.name=[HE][SPG2]Heavy Howitzer Shell
 
-item.aa_flakvierling_ammo.name=[AA]2cm AAGun 120Round Ammo
+item.aa_flakvierling_ammo.name=[AA]Low-Caliber AAGun 120Round Ammo
 
 item.he_sturmtiger_rocket.name=[HE]38cm SturmTiger Rocket
 
@@ -194,11 +198,6 @@ item.lightmtr.name=[VG]VehicleGrenadeLauncher
 item.m1mrt.name=[MRT]81mm M1
 
 item.he_mrt2_shell.name=[MRT][HE]Mortar Shell
-
-item.he_lt_apm.name=[HE]Vehicle Grenade Launcher A.P.Mine
-item.he_lt_atm.name=[HE]Vehicle Grenade Launcher A.T.Mine
-item.he_lt_grenade.name=[HE]Vehicle Grenade Launcher Grenade
-item.heat_lt_grenade.name=[HEAT]Vehicle Grenade Launcher A.T.Grenade
 
 #-------------------------------
 

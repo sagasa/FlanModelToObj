@@ -204,6 +204,11 @@
 		"sounds" : [ "rpd_reload" ]
 	},
 
+	"RPD_Fire": {
+		"category" : "player",
+		"sounds" : [ "RPD_Fire" ]
+	},
+
 	"MG4KEshoot": {
 		"category" : "player",
 		"sounds" : [ "MG4KEshoot" ]

@@ -1,9 +1,10 @@
 Name [SG]Coach Gun
 ShortName coachgun
-Description Pellet 9_[SG]Shotgun shell [DamageVsPlayer 1.0]_[SG]Shotgun Slug [DamageVsPlayer 10]_ShootDelay 6_EquipPoint 5
+Description Pellet 9_[SG]BuckShot Shell_[SG]Slug Shot [DamageVsPlayer 15]_[SG]FlameShot Shell_ShootDelay 6_EquipPoint 5
 //The ammo this gun uses (shortName)
 Ammo sg_shotshell
 Ammo sg_slug
+Ammo sg_flameshot
 Ammo dummyammo
 Icon coachgun
 //Colour in Red, Green, Blue, each going up to 255.

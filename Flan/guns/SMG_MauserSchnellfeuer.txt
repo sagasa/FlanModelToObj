@@ -2,7 +2,7 @@ Name [SMG]Mauser Schnellfeuer
 ShortName c96f
 Description [HG1]HG 10Round Magazine x2 [DamageVsLiving 2.5]_ShootDelay 1_EquipPoint 3
 //The ammo this gun uses (shortName)
-Ammo smg3_ammo
+Ammo hg1_ammo
 Ammo dummyammo
 Icon C96f
 //Colour in Red, Green, Blue, each going up to 255.

@@ -43,71 +43,72 @@ public class FlanModelLoader {
 		rootDir = rootdir;
 	}
 
-	public void read(ModelType type,String str) {
+	public void read(ModelType type, String str) {
 		try {
 			loader = URLClassLoader.newInstance(new URL[] { rootDir.toURI().toURL() });
 		} catch (MalformedURLException e1) {
 			e1.printStackTrace();
 		}
 		// 設定ファイルから読み込み
-		List<ModelInfo> infolist = new ArrayList<>();
+		ModelInfo infolist;
 		try {
-			infolist.add(readModelInfo(type, new FileInputStream(new File(rootDir, str))));
+			infolist = readModelInfo(type, new FileInputStream(new File(rootDir, str)));
 		} catch (FileNotFoundException e2) {
 			e2.printStackTrace();
+			return;
 		}
 		// Infoからモデルを出力
-		for (ModelInfo info : infolist) {
-			/*
-			 * if (ModelNameMap.get(info.ModelName) == null) {
-			 * System.out.println("model not bind " + info.Name); continue; } //
-			 */
-			String obj = null;
-			File outDir = null;
-			try {
-				// Typeによって場合分け
-				switch (info.Type) {
-				case GUN:
-					obj = loadGunModel(info);
-					outDir = new File("./output/guns/" + info.Name.replaceAll("/", "-") + "/");
-					break;
-				case VEHICLE:
-					obj = loadVehicleModel(info);
-					outDir = new File("./output/vehicles/" + info.Name.replaceAll("/", "-") + "/");
-					break;
-				}
-			} catch (ClassNotFoundException e1) {
-				System.out.println("model not found " + info.Name);
-			}
-			if (obj == null || outDir == null) {
-				System.out.println("cant load model " + info.Name);
-				continue;
-			}
-			outDir.mkdirs();
-			try {
-				String[] split = info.ModelName.split("\\.");
-				FileWriter modelwriter = new FileWriter(new File(outDir,  split[split.length-1]+ ".obj"));
-				modelwriter.write(obj);
-				modelwriter.close();
 
-				FileWriter mtlwriter = new FileWriter(new File(outDir, "texture.mtl"));
-				mtlwriter.write(ObjBilder.getMtl(info.TextureName));
-				mtlwriter.close();
-
-				File txture = new File(rootDir, "assets/flansmod/skins/" + info.TextureName + ".png");
-				if (txture.exists()) {
-					// texture.mtl
-					new File(outDir, info.TextureName + ".png").delete();
-					Files.copy(txture.toPath(), new File(outDir, info.TextureName + ".png").toPath());
-				} else {
-					System.out.println("missing texture " + txture.getPath());
-				}
-			} catch (IOException e) {
-				System.out.println("errer in writing model " + info.Name);
-				e.printStackTrace();
+		/*
+		 * if (ModelNameMap.get(info.ModelName) == null) {
+		 * System.out.println("model not bind " + info.Name); continue; } //
+		 */
+		String obj = null;
+		File outDir = null;
+		try {
+			// Typeによって場合分け
+			switch (infolist.Type) {
+			case GUN:
+				obj = loadGunModel(infolist);
+				outDir = new File("./output/guns/" + infolist.Name.replaceAll("/", "-") + "/");
+				break;
+			case VEHICLE:
+				obj = loadVehicleModel(infolist);
+				outDir = new File("./output/vehicles/" + infolist.Name.replaceAll("/", "-") + "/");
+				break;
 			}
-			System.out.println("load sucsessful " + info.Name);
+		} catch (ClassNotFoundException e1) {
+			System.out.println("model not found " + infolist.Name);
 		}
+		if (obj == null || outDir == null) {
+			System.out.println("cant load model " + infolist.Name);
+			return;
+		}
+		outDir.mkdirs();
+		try {
+			String[] split = infolist.ModelName.split("\\.");
+			FileWriter modelwriter = new FileWriter(new File(outDir, split[split.length - 1] + ".obj"));
+			modelwriter.write(obj);
+			modelwriter.close();
+
+			FileWriter mtlwriter = new FileWriter(new File(outDir, "texture.mtl"));
+			mtlwriter.write(ObjBilder.getMtl(infolist.TextureName));
+			mtlwriter.close();
+
+			File txture = new File(rootDir, "assets/flansmod/skins/" + infolist.TextureName + ".png");
+			if (txture.exists()) {
+				// texture.mtl
+				new File(outDir, infolist.TextureName + ".png").delete();
+				Files.copy(txture.toPath(), new File(outDir, infolist.TextureName + ".png").toPath());
+			} else {
+				System.out.println("missing texture " + txture.getPath());
+			}
+		} catch (IOException e) {
+			System.out.println("errer in writing model " + infolist.Name);
+			e.printStackTrace();
+		}
+		System.out.println("load sucsessful " + infolist.Name);
+
 	}
 
 	public void readAll() {
@@ -158,7 +159,7 @@ public class FlanModelLoader {
 			outDir.mkdirs();
 			try {
 				String[] split = info.ModelName.split("\\.");
-				FileWriter modelwriter = new FileWriter(new File(outDir,  split[split.length-1]+ ".obj"));
+				FileWriter modelwriter = new FileWriter(new File(outDir, split[split.length - 1] + ".obj"));
 				modelwriter.write(obj);
 				modelwriter.close();
 
@@ -235,7 +236,7 @@ public class FlanModelLoader {
 			reader.close();
 			in.close();
 		} catch (IOException e) {
-			System.out.println(e.getStackTrace());
+			e.printStackTrace();
 		}
 		return new ModelInfo(type, name, model, texture, modelScale);
 	}

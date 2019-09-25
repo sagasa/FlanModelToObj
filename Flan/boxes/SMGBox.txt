@@ -15,14 +15,18 @@ BottomTexture bottom
 //NumGuns must come before all the addGun lines and must be correct.
 //iron blockIron ingotGold diamond log glass gunpowder redstone
 
-NumGuns 10
+NumGuns 13
 
 AddGun c96f 4 iron
-AddAmmo ticket_smg3_ammo 1 iron 2 gunpowder
+AddAmmo ticket_hg1_ammo 1 iron 2 gunpowder
+AddGun m50 6 iron
+AddAmmo ticket_hg1_ammo 1 iron 2 gunpowder
 AddGun m3a1 5 iron
 AddAmmo ticket_smg1_ammo 1 iron 2 gunpowder
 AddGun ppsh41 8 iron
 AddAmmo ticket_smg2_ammo 1 iron 1 gunpowder
+AddGun pps43 8 iron
+AddAmmo ticket_smg2_ammo 1 iron 2 gunpowder
 AddGun mp35 8 iron
 AddAmmo ticket_smg2_ammo 1 iron 1 gunpowder
 AddGun stenmk2 8 iron
@@ -33,7 +37,9 @@ AddGun mp40 8 iron
 AddAmmo ticket_smg1_ammo 1 iron 2 gunpowder
 AddGun thompson 8 iron
 AddAmmo ticket_smg1_ammo 1 iron 2 gunpowder
-AddGun pps43 8 iron
-AddAmmo ticket_smg1_ammo 1 iron 2 gunpowder
 AddGun type100e-1 8 iron
 AddAmmo ticket_smg1_ammo 1 iron 2 gunpowder
+AddGun kp31 10 iron
+AddAmmo smg3_ammo 1 iron 1 gunpowder
+AddGun kpm44 10 iron
+AddAmmo smg3_ammo 1 iron 1 gunpowder

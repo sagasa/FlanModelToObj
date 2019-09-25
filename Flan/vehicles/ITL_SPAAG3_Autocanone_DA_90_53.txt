@@ -1,0 +1,92 @@
+//---Standard Config for Flans Mod----------------
+
+
+//---Standard-------------------------------------
+// Naming
+Name [SPAAG]Autocanone DA 90/53
+ShortName acda9053
+Icon acda9053
+
+// Visuals
+Model serik4.ACDA9053
+ModelScale 1
+
+//Misc
+
+//------------------------------------------------
+
+//---Driveables-----------------------------------
+//Visuals
+Texture ACDA9053
+
+//Movement
+MaxThrottle 1.0
+MaxNegativeThrottle 0.85
+TurnLeftSpeed 0.425
+TurnRightSpeed 0.425
+
+CameraDistance 7.5
+
+//Wheels
+NumWheels 4
+WheelPosition 0 -30 -12 -18
+WheelPosition 1 -30 -12 18
+WheelPosition 2 30 -12 18
+WheelPosition 3 30 -12 -18
+WheelSpringStrength 0.5
+WheelRadius 1
+
+Bounciness 0.3
+
+//Inventory Slots
+FuelTankSize 1000
+CargoSlots 0
+
+//Recipe
+AddRecipeParts core 12 iron
+
+//Driver and Passengers
+Driver 23 8 7
+Passengers 2
+Passenger 1 -26 20 0 core -180 180 -5 80 hcaagun PassengerGun1
+Passenger 2 23 8 -7 core
+RotatedPassengerOffset 1 0 0 11
+PassengerAimSpeed 1 4.0 4.0 0
+GunOrigin 1 0 5 0
+
+//Sounds
+StartSound Jeep_EngineSound
+StartSoundLength 90
+EngineSound Jeep_EngineSound
+EngineSoundLength 90
+StartSoundRange 50
+EngineSoundRange 50
+
+//Health and collision
+SetupPart core 2000 -57 -10 -19 112 52 38
+BulletDetection 5
+
+Size 10 10
+
+//Misc
+CameraDistance 5
+//------------------------------------------------
+
+//---Vehicle--------------------------------------
+//Visuals
+RotateWheels True
+
+//Movement
+FourWheelDrive True
+
+PlaceableOnLand false
+PlaceableOnSponge true
+IsExplosionWhenDestroyed true
+
+Description Placeable on sponge._CoreHP 2000_PassengerGun_ [AA][AAG]High-Caliber AAGun Shell_ [APHE][AAG]High-Caliber AAGun Shell
+
+Size 10 5
+
+//Misc
+//SquashMobs True
+//------------------------------------------------

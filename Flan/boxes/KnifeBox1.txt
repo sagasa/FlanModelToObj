@@ -17,5 +17,5 @@ BottomTexture bottom
 
 NumGuns 2
 
-AddGun schanzzeug 1 iron
-AddGun m84bayonet 2 iron
+AddGun schanzzeug 1 iron_nugget
+AddGun m84bayonet 2 iron_nugget

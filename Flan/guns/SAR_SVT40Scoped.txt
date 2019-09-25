@@ -24,7 +24,7 @@ IgnoreArmorDamageFactor 1.0
 //Modifiers
 MoveSpeedModifier 0.8
 //The higher this value, the more the bullets spread
-Accuracy Accuracy 0.5
+Accuracy 0.5
 //Time in ticks between rounds
 ShootDelay 2
 ShootSound SVT40_Fire

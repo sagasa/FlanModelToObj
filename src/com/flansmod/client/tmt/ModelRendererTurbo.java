@@ -106,8 +106,7 @@ public class ModelRendererTurbo {
 		if (faceLengths != null && faceLengths.length < coords.length)
 			faceLengths = null;
 
-		Coord2D exVec = new Coord2D(0, 0);
-		exVec.zCoord = -depth;
+		Coord2D exVec = new Coord2D(0, 0,0);//TODO
 		exVec = exVec.rotate(rotX, rotY, rotZ);
 
 		VertexUV[] vertsTop = new VertexUV[coords.length];
@@ -126,8 +125,7 @@ public class ModelRendererTurbo {
 			float v = 1 - ((textureOffsetY + curCoord.vCoord) / textureY);
 
 			VertexUV top = new VertexUV(curCoord).translate(x, y, z).setUV(u0, v);
-			VertexUV bottom = new VertexUV(curCoord).translate(x, y, z)
-					.translate((float) exVec.xCoord, (float) exVec.yCoord, (float) exVec.zCoord).setUV(u1, v);
+			VertexUV bottom = new VertexUV(curCoord).translate(x, y, z).translate((float) exVec.xCoord, (float) exVec.yCoord, (float) exVec.zCoord).setUV(u1, v);
 			vertsTop[i] = top;
 			vertsBottom[coords.length - i - 1] = bottom;
 			verts[0][i] = top;
@@ -592,7 +590,7 @@ public class ModelRendererTurbo {
 	}
 
 	public void doMirror(boolean x, boolean y, boolean z) {
-		System.out.println("doMirror "+x+" "+y+" "+z);
+		//System.out.println("doMirror "+x+" "+y+" "+z);
 		for (Polygon face : Poly) {
 			VertexUV[] verts = face.Vertex;
 			for (int j = 0; j < verts.length; j++) {

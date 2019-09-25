@@ -2,7 +2,7 @@ Name [HG3]Nagant M1895(Suppressor)
 ShortName nm1895
 Description [HG3]HG Cartridge [DamageVsLiving 6.4]_ShootDelay 3_EquipPoint 1
 //The ammo this gun uses (shortName)
-Ammo hg3_ammo
+Ammo hg2_ammo
 Ammo dummyammo
 Icon m1895sup
 //Colour in Red, Green, Blue, each going up to 255.

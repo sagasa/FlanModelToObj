@@ -1,0 +1,120 @@
+// ------------------------------------------------------ Naming ------------------------------------------------------
+Name [LF]Ar68
+ShortName ar68
+Description CoreHP 125_WingHP 100_TailHP 100_PrimaryGun [AP]Plane Machinegun Ammo_SecondaryBomb [HE]Anti-Player Bomb
+// ------------------------------------------------------ Visuals -----------------------------------------------------
+Icon Ar68
+Model serik4.Ar68
+ModelScale 0.85
+Texture Ar68
+//Third Person Camera Distance
+CameraDistance 7.5
+//Resting Pitch. Set this so the plane spawns level. It will fall onto its collision boxes automatically, but this lets you start it flat
+RestingPitch 5.0
+Acceleration 1.75 1.75
+// ------------------------------------------------------ Movement ------------------------------------------------------
+//Mode : One of Plane, Heli or VTOL. The VTOL has a toggle button that switches some model aesthetics and the flight mode
+Mode Plane
+//Throttle
+MaxThrottle 1.0
+MaxNegativeThrottle 0.0
+//Yaw modifiers
+TurnLeftSpeed 0.85
+TurnRightSpeed 0.85
+//Pitch modifiers
+LookUpSpeed 0.85
+LookDownSpeed 0.85
+//Roll modifiers
+RollLeftSpeed 2.5
+RollRightSpeed 2.5
+//Drag 1.0 is standard. Modify to make the plane / heli more or less sluggish
+Drag 0.45
+//Wheels
+NumWheels 3
+WheelPosition 0 12 2 -20
+WheelPosition 1 12 2 19
+WheelPosition 2 -50 13 0
+WheelSpringStrength 0.125
+//Propeller Positions
+//Propeller <ID> <x> <y> <z> <planePart> <recipeItem>
+Propeller 0 -24 -13 0 nose propeller
+// ------------------------------------------------------ Weaponry ------------------------------------------------------
+//Weapon types. Options are Missile, Bomb, Gun, Shell, None
+Primary Missile
+Secondary Bomb
+//Time between shots in 1/20ths of seconds
+PlaceTimePrimary 160
+ShootDelayPrimary 2
+ReloadTimePrimary 70
+PlaceTimeSecondary 200
+ShootDelaySecondary 200
+ReloadTimeSecondary 200
+BulletSpeed 10
+BulletSpread 1.0
+//Whether to alternate or fire all together
+AlternatePrimary False
+AlternateSecondary False
+//Firing modes. One of SemiAuto, FullAuto or Minigun
+ModePrimary FullAuto
+ModeSecondary FullAuto
+//Add shoot origins. These are the points on your vehicle from which bullets / missiles / shells / bombs appear
+ShootPointPrimary 27 19 5 leftWing
+ShootPointPrimary 27 19 -5 leftWing
+//ShootPointPrimary 27 19 5 leftWing
+//ShootPointPrimary 27 19 -5 leftWing
+ShootPointSecondary 14 5 0 core
+ShootParticlesSecondary cloud 0 0 0
+// ------------------------------------------------------ Inventory ------------------------------------------------------
+CargoSlots 0
+BombSlots 1
+MissileSlots 1
+AllowAllAmmo False
+AddAmmo mg_plane_ammo
+AddAmmo antip_bomb
+//Fuel Tank Size (1 point of fuel will keep one propeller going with throttle at 1 for 1 tick)
+FuelTankSize 10000
+// ------------------------------------------------------ Passengers ------------------------------------------------------
+Pilot -10 12 0
+Passengers 0
+// ------------------------------------------------------ Sounds ------------------------------------------------------
+StartSound A6M2_StartSound
+StartSoundLength 20
+PropSound A6M2_PropSound2
+PropSoundLength 40
+StartSoundRange 100
+EngineSoundRange 1000
+PlaceSoundPrimary Camel_PlaceSound
+ShootSoundPrimary BrowningM2_Fire
+ReloadSoundPrimary PG_reload
+PlaceSoundSecondary None
+ShootSoundSecondary Bombair
+ReloadSoundSecondary PlaneBomb_reload1
+// ------------------------------------------------------ Recipe ------------------------------------------------------
+//Each section of the plane may have many parts
+//The sections are tailWheel, tail, bay, topWing, leftWingWheel, leftWing, rightWingWheel,
+//rightWing, nose, turret, coreWheel, core
+AddRecipeParts core 8 iron
+AddRecipeParts leftWing 4 wood
+AddRecipeParts tail 2 wood
+//Dye colours are "black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "lightBlue", "magenta", "orange", "white"
+//AddDye 0 gray
+// ------------------------------------------------------ Health and hitboxes ------------------------------------------------------
+SetupPart core 125 -30 3 -10 65 29 20
+SetupPart tail 100 -74 4 -7 44 27 15
+SetupPart leftWing 100 -16 9 -70 34 26 132
+HasGear True
+BulletDetection 5
+//Collision points for breaking wings etc. upon crashing
+//Core
+CollisionPoint 3 16 50 leftWing
+CollisionPoint 3 16 19 leftWing
+CollisionPoint 3 16 -18 leftWing
+CollisionPoint 3 16 -48 leftWing
+CollisionPoint 21 16 0 core
+CollisionPoint 3 16 0 core
+CollisionPoint -55 16 0 tail
+CollisionPoint -25 16 0 tail
+IsExplosionWhenDestroyed true
+CollisionDamageEnable false
+CollisionDamageThrottle 0.21
+CollisionDamageTimes 0

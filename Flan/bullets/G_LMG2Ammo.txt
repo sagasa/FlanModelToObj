@@ -6,7 +6,7 @@ Texture MGBulletRed
 //Colour of icon and model
 Colour 255 255 255
 ItemID 10113
-Icon mg34ammo
+Icon m1919ammo
 //How affected by gravity the bullet is
 FallSpeed 0.75
 //The maximum stack size

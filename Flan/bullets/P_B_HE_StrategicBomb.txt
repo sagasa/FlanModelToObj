@@ -1,0 +1,42 @@
+Name [HE]StrategicBomber Bomb
+ShortName sb_bomb
+Description DamageVsLiving 100_DamageVsVehicles 100_Explosion 4.5_ExplosionDamageVsLiving 0.25_ExplosionDamageVsPlayer 5_ExplosionDamageVsPlane 2.0_ExplosionDamageVsVehicle 1.0
+Model Bomb
+//Colour of icon and model
+Colour 255 255 255
+ItemID 11322
+Icon Icon_WW2_Bomb_German250kg
+//How affected by gravity the bullet is
+FallSpeed 1.0
+//The number of rounds each item has. Limited to 32000.
+RoundsPerItem 2
+//The maximum stack size of a stack of these
+MaxStackSize 1
+//The damage multiplier caused by the bullet on hitting an entity
+DamageVsLiving 100
+DamageVsVehicles 100
+//Size of explosion caused
+ExplosionRadius 10
+ExplosionDamageVsLiving 1.0
+ExplosionDamageVsPlayer 1.0
+ExplosionDamageVsPlane 5.0
+ExplosionDamageVsVehicle 5.0
+//True if bullet explodes on hitting anything. Fuse denotes the maximum time it may spend in the air before detonating
+ExplodeOnImpact True
+Fuse 40
+FlakParticles 25
+//Amount of fire to spread on exploding; for each increment, it will increase the dimensions of the burning area by 2. i.e. 1 will burn a 3x3 square, 2 will burn a 5x5 square
+Fire 0
+BreaksGlass false
+//Size of box to check for entities to hit / detonate
+HitBoxSize 1.0
+HitSound explcls6
+HitSoundRange 1000
+HitSoundEnable true
+EntityHitSoundEnable true
+//Whether or not the bullet can travel through an entity having hit it
+Penetrates False
+SmokeTrail False
+//True if this is a bomb
+DragInAir 1.2
+Bomb True

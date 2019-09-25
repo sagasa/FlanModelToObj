@@ -2,7 +2,7 @@ Name [HG3]M1917
 ShortName m1917rv
 Description [HG3]HG Cartridge [DamageVsLiving 6.75]_ShootDelay 4_EquipPoint 1
 //The ammo this gun uses (shortName)
-Ammo hg3_ammo
+Ammo hg2_ammo
 Ammo dummyammo
 Icon m1917
 //Colour in Red, Green, Blue, each going up to 255.

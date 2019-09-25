@@ -1,0 +1,167 @@
+﻿//---Standard Plane Config for Flans Mod----------
+//Created by Minecraft-SMP Toolbox 2.1.2.7
+
+
+//---Standard-------------------------------------
+// Naming
+Name [FB]Re.2005
+ShortName re2005
+
+Acceleration 1.75 1.75
+// Visuals
+Model serik4.Re2005
+ModelScale 0.95
+Icon Re2005
+
+Description CoreHP 150_WingHP 125_TailHP 125_PrimaryAmmo_ [HE]Plane Autocannon Ammo_SecondaryBomb_ [HE]Anti-Player Bomb
+// Recipe
+
+
+//Misc
+
+//------------------------------------------------
+
+//---Driveables-----------------------------------
+//Visuals
+Texture Re2005
+
+
+//Movement
+MaxThrottle 1.45
+MaxNegativeThrottle 0.0
+Drag 0.45
+
+
+//Wheels
+NumWheels 3
+WheelPosition 0 -6 -10 -26
+WheelPosition 1 -6 -10 26
+WheelPosition 2 -116 18 0
+WheelSpringStrength 0.125
+
+
+//Floating
+
+
+//Ammo
+AllowAllAmmo False
+AddAmmo ac_plane_ammo
+AddAmmo antip_bomb
+
+//Weapons
+Primary Shell
+Secondary Bomb
+
+PlaceTimePrimary 160
+ShootDelayPrimary 2
+ReloadTimePrimary 80
+
+PlaceTimeSecondary 300
+ShootDelaySecondary 10
+ReloadTimeSecondary 300
+
+BulletSpeed 10.00
+BulletSpread 0.75
+
+AlternatePrimary False
+AlternateSecondary True
+ModePrimary FullAuto
+ModeSecondary FullAuto
+ShootPointPrimary -3 23 38 leftWing
+ShootPointPrimary -3 23 -38 leftWing
+ShootPointPrimary 39 38 0 leftWing
+ShootPointSecondary -27 20 -32 leftWing
+ShootPointSecondary -27 20 32 leftWing
+
+DamageModifierPrimary 1.0
+
+ShootParticlesPrimary cloud 0 0 0
+
+
+//Driver and Passengers
+Pilot -42 22 0
+Passengers 0
+
+//Inventory Slots
+CargoSlots 0
+BombSlots 1
+MissileSlots 1
+FuelTankSize 10000
+
+//Recipe
+AddRecipeParts core 28 iron
+AddRecipeParts leftWing 2 iron
+AddRecipeParts tail 2 iron
+
+//Health and Collision
+SetupPart core 150 -76 8 -13 110 32 26
+SetupPart tail 125 -127 13 -12 51 30 24
+SetupPart leftWing 125 -50 17 -105 49 8 210
+CollisionPoint 61 34 0 nose
+CollisionPoint -80 34 0 tail
+CollisionPoint -96 34 0 tail
+CollisionPoint -112 34 0 tail
+CollisionPoint 10 26 16 leftWing
+CollisionPoint 10 19 32 leftWing
+CollisionPoint 10 21 48 leftWing
+CollisionPoint 10 24 64 leftWing
+CollisionPoint 10 26 80 leftWing
+CollisionPoint 10 29 96 leftWing
+CollisionPoint 10 31 112 leftWing
+CollisionPoint 10 26 -16 leftWing
+CollisionPoint 10 19 -32 leftWing
+CollisionPoint 10 21 -48 leftWing
+CollisionPoint 10 24 -64 leftWing
+CollisionPoint 10 26 -80 leftWing
+CollisionPoint 10 29 -96 leftWing
+CollisionPoint 10 31 -112 leftWing
+BulletDetection 10
+
+//Misc
+CameraDistance 10.0
+
+//Sounds
+StartSound Spitfire_StartSound
+StartSoundLength 20
+PropSound Spitfire_PropSound
+PropSoundLength 40
+StartSoundRange 100
+EngineSoundRange 1000
+PlaceSoundPrimary Spitfire_PlaceSound
+ShootSoundPrimary MG151_Fire
+ReloadSoundPrimary PG_reload
+PlaceSoundSecondary None
+ShootSoundSecondary Bombair
+ReloadSoundSecondary PlaneBomb_reload1
+//------------------------------------------------
+
+//---Plane----------------------------------------
+//Flying Mode
+Mode Plane
+
+
+//Visuals
+
+
+//Movement
+TurnLeftSpeed 0.85
+TurnRightSpeed 0.85
+//Pitch modifiers
+LookUpSpeed 0.85
+LookDownSpeed 0.85
+//Roll modifiers
+RollLeftSpeed 2.1
+RollRightSpeed 2.1
+
+IsExplosionWhenDestroyed true
+//Weapon
+
+
+//Misc
+RestingPitch 5.0
+
+
+//Propeller
+Propeller 0 0 0 0 nose propeller
+
+//------------------------------------------------

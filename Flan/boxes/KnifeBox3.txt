@@ -17,5 +17,5 @@ BottomTexture bottom
 
 NumGuns 2
 
-AddGun vulcanstalin 1 iron
-AddGun nr40 2 iron
+AddGun vulcanstalin 1 iron_nugget
+AddGun nr40 2 iron_nugget

@@ -2,7 +2,7 @@ Name [HG1]Welrod Mk.I
 ShortName welrod
 Description [HG1]HG 10Round Magazine [DamageVsLiving 6.25]_ShootDelay 13_EquipPoint 3
 //The ammo this gun uses (shortName)
-Ammo hg2_ammo
+Ammo hg1_ammo
 Ammo dummyammo
 Icon m1895sup
 //Colour in Red, Green, Blue, each going up to 255.

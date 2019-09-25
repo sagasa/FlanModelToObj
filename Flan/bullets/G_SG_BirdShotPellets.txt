@@ -14,7 +14,7 @@ RoundsPerItem 16
 MaxStackSize 8
 //The damage multiplier caused by the bullet on hitting an entity
 DamageVsPlayer 0.25
-DamageVsLiving 0.25
+DamageVsLiving 30
 DamageVsVehicles 0.25
 DamageVsPlanes 0.25
 //Size of explosion caused

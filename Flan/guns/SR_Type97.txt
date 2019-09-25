@@ -19,7 +19,7 @@ DecreaseRecoilYaw 2.00
 //Damage in half hearts
 LoadIntoGun 1
 NumBullets 1
-Damage 1.375
+Damage 1.26
 IgnoreArmorProbability 0.0
 IgnoreArmorDamageFactor 1.0
 //Modifiers

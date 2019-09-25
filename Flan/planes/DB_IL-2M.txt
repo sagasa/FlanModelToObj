@@ -1,0 +1,144 @@
+// ------------------------------------------------------ Naming ------------------------------------------------------
+Name [DB]IL-2M
+ShortName il-2-m
+Description CoreHP 175_WingHP 150_TailHP 125_PrimaryGun_ [AP]Plane Machinegun Ammo_SecondaryBomb_ [HE]Anti-Player Bomb_ [HEAT]Anti-Vehicle Cluster Bomb_GunnerAmmo_ [AP]Plane Machinegun Ammo
+// ------------------------------------------------------ Visuals ------------------------------------------------------
+Icon Icon_WW2_Plane_IL2M_3A
+Model Manus_WW2.Plane.WW2_Plane_IL2M_3
+ModelScale 0.85
+Texture Skin_WW2_Plane_IL2M_3A
+//Third Person Camera Distance
+CameraDistance 8.0
+//Resting Pitch. Set this so the plane spawns level. It will fall onto its collision boxes automatically, but this lets you start it flat
+RestingPitch 5.0
+// ------------------------------------------------------ Movement ------------------------------------------------------
+//Mode : One of Plane, Heli or VTOL. The VTOL has a toggle button that switches some model aesthetics and the flight mode
+Mode Plane
+//Throttle
+MaxThrottle 1.15
+MaxNegativeThrottle 0.0
+//Yaw modifiers
+TurnLeftSpeed 0.65
+TurnRightSpeed 0.65
+//Pitch modifiers
+LookUpSpeed 0.65
+LookDownSpeed 0.65
+//Roll modifiers
+RollLeftSpeed 1.8
+RollRightSpeed 1.8
+//Drag 1.0 is standard. Modify to make the plane / heli more or less sluggish
+Drag 0.425
+//Wheels
+NumWheels 3
+WheelPosition 0 18 -12 -24
+WheelPosition 1 18 -12 24
+WheelPosition 2 -98 16 0
+WheelSpringStrength 0.125
+//Propeller Positions
+//Propeller <ID> <x> <y> <z> <planePart> <recipeItem>
+Propeller 0 0 0 0 nose propeller
+// ------------------------------------------------------ Weaponry ------------------------------------------------------
+//Weapon types. Options are Missile, Bomb, Gun, Shell, None
+Primary Shell
+Secondary Missile
+//Time between shots in 1/20ths of seconds
+PlaceTimePrimary 160
+ShootDelayPrimary 2
+ReloadTimePrimary 80
+PlaceTimeSecondary 180
+ShootDelaySecondary 20
+ReloadTimeSecondary 180
+BulletSpeed 9.50
+BulletSpread 0.75
+//Whether to alternate or fire all together
+AlternatePrimary False
+AlternateSecondary False
+//Firing modes. One of SemiAuto, FullAuto or Minigun
+ModePrimary FullAuto
+ModeSecondary FullAuto
+//Add shoot origins. These are the points on your vehicle from which bullets / missiles / shells / bombs appear
+ShootPointPrimary 36 24 20 rightWing 
+ShootPointPrimary 36 24 -20 leftWing 
+ShootPointPrimary 36 24 20 rightWing 
+ShootPointPrimary 36 24 -20 leftWing 
+ShootPointSecondary 24 6 0 core
+ShootParticlesPrimary cloud 0 0 0
+// ------------------------------------------------------ Inventory ------------------------------------------------------
+CargoSlots 0
+BombSlots 2
+MissileSlots 1
+AllowAllAmmo False
+AddAmmo mg_plane_ammo
+AddAmmo antip_bomb
+AddAmmo ptab
+AddAmmo dummyammo
+//Fuel Tank Size (1 point of fuel will keep one propeller going with throttle at 1 for 1 tick)
+FuelTankSize 12000
+// ------------------------------------------------------ Passengers ------------------------------------------------------
+Pilot -1 25 0
+Passengers 1
+//Passenger <ID> <x> <y> <z> <part> [minYaw] [maxYaw] [minPitch] [maxPitch] [gunType] [gunModelName]
+Passenger 1 -26 25 0 core 140 220 -5 50 reargun PassengerGun1
+PassengerAimSpeed 1 0.0 0.0 0
+PassengerLegacyAiming 1 true
+PassengerYawBeforePitch 1 false
+PassengerTraverseSounds 1 true
+PassengerYawSound 1 Turret4
+PassengerYawSoundLength 1 8
+PassengerPitchSound 1 Turret4
+PassengerPitchSoundLength 1 8
+GunOrigin 1 -36 20 0
+// ------------------------------------------------------ Sounds ------------------------------------------------------
+StartSound Camel_StartSound
+StartSoundLength 20
+PropSound Camel_PropSound
+PropSoundLength 40
+StartSoundRange 100
+EngineSoundRange 1000
+PlaceSoundPrimary Camel_PlaceSound
+ShootSoundPrimary 12,7mm_2
+ReloadSoundPrimary PG_reload
+PlaceSoundSecondary None
+ShootSoundSecondary Bombair
+ReloadSoundSecondary PlaneBomb_reload1
+LockedOnSound Lock
+SoundTime 8
+LockedOnSoundRange 15
+// ------------------------------------------------------ Recipe ------------------------------------------------------
+//Each section of the plane may have many parts
+//The sections are tailWheel, tail, bay, topWing, leftWingWheel, leftWing, rightWingWheel,
+//rightWing, nose, turret, coreWheel, core
+AddRecipeParts core 28 iron
+AddRecipeParts rightWing 2 iron
+AddRecipeParts tail 2 iron
+//Dye colours are "black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "lightBlue", "magenta", "orange", "white"
+//AddDye 0 gray
+// ------------------------------------------------------ Health and hitboxes ------------------------------------------------------
+SetupPart core 175 -36 22 -8 101 20 16
+SetupPart rightWing 150 -26 22 -113 52 12 226
+SetupPart tail 125 -109 22 -8 73 20 16
+HasGear True
+BulletDetection 5
+SquashMobs false
+//Collision points for breaking wings etc. upon crashing
+//Core
+CollisionPoint 33 30 0 core
+CollisionPoint 66 30 0 core
+//RightWing
+CollisionPoint 12 33 110 rightWing
+CollisionPoint 12 29 83 rightWing
+CollisionPoint 12 25 55 rightWing
+CollisionPoint 12 21 28 rightWing
+CollisionPoint 12 33 -110 rightWing
+CollisionPoint 12 29 -83 rightWing
+CollisionPoint 12 25 -55 rightWing
+CollisionPoint 12 21 -28 rightWing
+//Tail
+CollisionPoint -40 30 0 tail
+CollisionPoint -66 30 0 tail
+CollisionPoint -92 30 0 tail
+IsExplosionWhenDestroyed true
+CollisionDamageEnable false
+CollisionDamageThrottle 0.21
+CollisionDamageTimes 0
+HasFlare False

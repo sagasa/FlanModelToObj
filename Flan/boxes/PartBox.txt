@@ -1,0 +1,32 @@
+Name PartsBox
+ShortName partbox
+TopTexture partsboxtop
+SideTexture partsboxtop
+BottomTexture bottom
+//Recipe I iron G dyePowder.2
+//III
+//GGG
+//III
+//AddGun shortName amountOf item
+//AddAmmo must come immediately after AddGun for them to be in the same slot
+//The names of the items / blocks are those in the code, with some exceptions such as iron _ingotIron_ and gunpowder _sulphur_
+//And with parts from this mod, they are the shortName of the item
+//Guns cannot yet have multiple ammo types in the same slot. For now, just list them under two seperate guns that are the same
+//NumGuns must come before all the addGun lines and must be correct.
+//iron blockIron ingotGold diamond log glass gunpowder redstone
+
+NumGuns 12
+
+AddGun emptyfuelcan 1 iron
+AddGun pineoil 1 wood
+AddGun engine 1 iron
+AddGun propeller 1 iron
+AddGun dummygun 1 stone
+AddGun hmg 1 stone
+AddGun reargun 1 stone
+AddGun lightatgun 1 stone
+AddGun gunboat_20mm 1 stone
+AddGun gunboat_aagun 1 stone
+AddGun gunboat_maingun 1 stone
+AddGun lightmtr 1 stone
+AddGun bm-8 1 stone

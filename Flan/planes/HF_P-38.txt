@@ -1,0 +1,168 @@
+﻿//---Standard Plane Config for Flans Mod----------
+//Created by Minecraft-SMP Toolbox 2.0.0.0
+
+
+//---Standard-------------------------------------
+//Naming
+Name [HF]P-38 Lightning
+ShortName p-38
+
+
+//Visuals
+Model Manus_WW2.Plane.WW2_Plane_P38_1
+ModelScale 1.2
+Icon Icon_WW2_Plane_P38_1A
+
+Description CoreHP 175_WingHP 150_TailHP 125_PrimaryGun_ [HE]Plane Autocannon Ammo_SecondaryRocket_ [HE]Anti-Plane Rocket
+//Recipe
+
+
+//Misc
+
+//------------------------------------------------
+
+//---Driveables-----------------------------------
+//Visuals
+Texture Skin_WW2_Plane_P38_1A
+
+
+//Movement
+MaxThrottle 1.425
+MaxNegativeThrottle 0.0
+Acceleration 2.5 2.5
+Drag 0.4
+
+
+//Wheels
+NumWheels 3
+WheelPosition 0 -20 -8 -39
+WheelPosition 1 -20 -8 39
+WheelPosition 2 36 -8 0
+WheelSpringStrength 0.125
+
+
+//Inventory Slots
+FuelTankSize 5000
+FuelConsumption 6
+BombSlots 0
+CargoSlots 0
+MissileSlots 3
+
+
+//Recipe
+AddRecipeParts core 32 iron
+AddRecipeParts rightWing 2 iron
+AddRecipeParts tail 2 iron
+
+
+//Floating
+
+
+//Weapons
+AllowAllAmmo False
+AddAmmo ac_plane_shell
+AddAmmo he_plane_rocket
+Primary Shell
+ModePrimary FullAuto
+AlternatePrimary False
+ShootPointPrimary 62 26 2 nose
+ShootPointPrimary 62 26 -2 nose
+ShootPointPrimary 62 24 4 nose
+//ShootPointPrimary 62 24 -4 nose
+Secondary Missile
+ModeSecondary FullAuto
+AlternateSecondary True
+ShootPointSecondary 30 -12 30
+ShootPointSecondary 30 -12 -30
+
+PlaceTimePrimary 160
+ShootDelayPrimary 2
+ReloadTimePrimary 80
+
+PlaceTimeSecondary 180
+ShootDelaySecondary 1
+ReloadTimeSecondary 180
+
+BulletSpeed 9.50
+BulletSpread 0.75
+
+//Driver and Passengers
+Pilot 3 21 0
+Passengers 0
+
+
+//Sounds
+StartSound Spitfire_StartSound
+StartSoundLength 20
+PropSound Spitfire_PropSound
+PropSoundLength 40
+StartSoundRange 100
+EngineSoundRange 1000
+PlaceSoundPrimary Spitfire_PlaceSound
+ShootSoundPrimary BrowningM2_Fire
+ReloadSoundPrimary PG_reload
+PlaceSoundSecondary None
+ShootSoundSecondary PG_Rocket_fire1
+ReloadSoundSecondary PlaneBomb_reload1
+
+//Health and collision
+SetupPart core 175 -38 10 -8 94 20 16
+SetupPart tail 150 -132 12 -45 93 18 90
+SetupPart leftWing 125 -39 23 -135 46 15 270
+CollisionPoint 44 20 0 core
+CollisionPoint -55 22 39 tail
+CollisionPoint -84 22 39 tail
+CollisionPoint -105 22 39 tail
+CollisionPoint -123 22 39 tail
+CollisionPoint -119 21 0 tail
+CollisionPoint -55 22 -39 tail
+CollisionPoint -84 22 -39 tail
+CollisionPoint -105 22 -39 tail
+CollisionPoint -123 22 -39 tail
+CollisionPoint -12 23 16 leftWing
+CollisionPoint -12 28 45 leftWing
+CollisionPoint -12 33 76 leftWing
+CollisionPoint -12 38 106 leftWing
+CollisionPoint -12 23 -16 leftWing
+CollisionPoint -12 28 -45 leftWing
+CollisionPoint -12 33 -76 leftWing
+CollisionPoint -12 38 -106 leftWing
+BulletDetection 10
+
+
+//Misc
+CameraDistance 10.0
+
+//------------------------------------------------
+
+//---Plane----------------------------------------
+//Flying Mode
+Mode Plane
+
+
+//Visuals
+
+
+//Movement
+TurnLeftSpeed 0.65
+TurnRightSpeed 0.65
+//Pitch modifiers
+LookUpSpeed 0.65
+LookDownSpeed 0.65
+//Roll modifiers
+RollLeftSpeed 2.0
+RollRightSpeed 2.0
+//Weapon
+
+
+
+IsExplosionWhenDestroyed true
+//Misc
+RestingPitch 5.0
+
+
+//Propeller
+Propeller 0 0 0 0 leftWing propeller
+Propeller 1 0 0 0 rightWing propeller
+
+//------------------------------------------------

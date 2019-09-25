@@ -17,11 +17,11 @@ BottomTexture bottom
 
 NumGuns 4
 
-AddGun wrench 2 iron nugget
+AddGun wrench 2 iron_nugget
 AddAmmo wrench_ammo 1 stone
 AddGun repairtorch 2 iron
 AddAmmo repair_ammo 3 gunpowder
-AddGun syringe 3 iron 3 gunpowder 2 glass
+//AddGun syringe 3 iron 3 gunpowder 2 glass
 AddGun parachute 2 stick
 AddGun binoculars 1 iron
 AddAmmo sound_horn 1 stick

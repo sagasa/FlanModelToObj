@@ -17,5 +17,5 @@ BottomTexture bottom
 
 NumGuns 2
 
-AddGun type30bayonet 2 iron
-AddGun katana 3 iron
+AddGun type30bayonet 2 iron_nugget
+AddGun katana 3 iron_nugget

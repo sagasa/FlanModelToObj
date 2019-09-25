@@ -13,10 +13,10 @@ ItemID 10018
 ReloadTime 75
 //The amount of gun recoil, all relative : Sten = 1, Mp40 = 3, Kar98kSniper = 20
 Recoil 10
-RandomRecoilRange 4.0
+RandomRecoilRange 3.0
 RandomRecoilYawRange 1.5
-DecreaseRecoil 6.0
-DecreaseRecoilYaw 10
+DecreaseRecoil 7.0
+DecreaseRecoilYaw 100
 //Damage in half hearts
 LoadIntoGun 1
 NumBullets 1

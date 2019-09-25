@@ -1,0 +1,220 @@
+// ------------------------------------------------------ Naming ------------------------------------------------------
+Name [SB]B-17G
+ShortName b17g
+Description CoreHP 500_WingHP 450_TailHP 400_CargoSlots 8_PrimaryBomb_ [HE]Anti-Player Bomb_ [HEAT]Anti-Vehicle Cluster Bomb_ [SB][HE]Strategic Bomber Bomb_ [NUKE]Nuclear Bomb_GunnerAmmo_ [AP]Plane Machinegun Ammo
+// ------------------------------------------------------ Visuals ------------------------------------------------------
+Model Manus_WW2.Plane.WW2_Plane_B17G_1
+Icon Icon_WW2_Plane_B17G_1A
+Texture Skin_WW2_Plane_B17G_1A
+//Resting Pitch. Set this so the plane spawns level. It will fall onto its collision boxes automatically, but this lets you start it flat
+RestingPitch 5.0
+//Third Person Camera Distance
+CameraDistance 16.0
+// ------------------------------------------------------ Movement ------------------------------------------------------
+//Mode : One of Plane, Heli or VTOL. The VTOL has a toggle button that switches some model aesthetics and the flight mode
+Mode Plane
+//Throttle
+MaxThrottle 0.9
+MaxNegativeThrottle 0.0
+//Yaw modifiers
+TurnrightSpeed 0.65
+TurnRightSpeed 0.65
+//Pitch modifiers
+LookUpSpeed 0.65
+LookDownSpeed 0.65
+//Roll modifiers
+RollrightSpeed 0.8
+RollRightSpeed 0.8
+//Drag 1.0 is standard. Modify to make the plane / heli more or less sluggish
+Drag 0.35
+//Wheels
+NumWheels 3
+WheelPosition 0 30 -8 -62
+WheelPosition 1 30 -8 62
+WheelPosition 2 -201 26 0
+WheelSpringStrength 0.125
+//Propeller Positions
+Propeller 0 114 16 -52 nose propeller
+Propeller 1 114 16 52 nose propeller
+Propeller 2 98 16 -116 nose propeller
+Propeller 3 98 16 116 nose propeller
+// ------------------------------------------------------ Weaponry ------------------------------------------------------
+//Weapon types. Options are Missile, Bomb, Gun, Shell, None
+Primary Shell
+Secondary Bomb
+//Time between shots in 1/20ths of seconds
+PlaceTimePrimary 160
+ShootDelayPrimary 40
+ReloadTimePrimary 100
+PlaceTimeSecondary 260
+ShootDelaySecondary 10
+ReloadTimeSecondary 260
+//Whether to alternate or fire all together
+AlternatePrimary False
+AlternateSecondary True
+//Firing modes. One of SemiAuto, FullAuto or Minigun
+ModePrimary FullAuto
+ModeSecondary FullAuto
+//Add shoot origins. These are the points on your vehicle from which bullets / missiles / shells / bombs appear
+ShootPointPrimary 0 20 0 core
+ShootPointSecondary 48 30 6 core
+ShootPointSecondary 48 30 -6 core
+ShootParticlesPrimary note 0 3 0
+ShootParticlesPrimary note 0 4 0
+// ------------------------------------------------------ Inventory ------------------------------------------------------
+CargoSlots 8
+BombSlots 4
+MissileSlots 1
+AllowAllAmmo False
+AddAmmo antip_bomb
+AddAmmo ptab
+AddAmmo sb_bomb
+AddAmmo nuke_bomb
+AddAmmo dummyammo
+//Fuel Tank Size (1 point of fuel will keep one propeller going with throttle at 1 for 1 tick)
+FuelTankSize 20000
+// ------------------------------------------------------ Passengers --------------------------------------------------
+Pilot 70 55 -7
+Passengers 7
+Passenger 1 70 55 7 core -360 360 -89 89
+Passenger 2 127 38 0 nose -45 45 -45 25 reargun PassengerGun2
+PassengerAimSpeed 2 3.0 3.0 0
+PassengerLegacyAiming 2 true
+PassengerYawBeforePitch 2 false
+GunOrigin 2 127 38 0
+Passenger 3 45 68 0 core -360 360 0 70 reargun PassengerGun3
+PassengerAimSpeed 3 3.0 3.0 0
+PassengerLegacyAiming 3 true
+PassengerYawBeforePitch 3 false
+GunOrigin 3 45 68 0
+Passenger 4 -78 10 0 core -360 360 -70 0 reargun PassengerGun4
+PassengerAimSpeed 4 3.0 3.0 0
+PassengerLegacyAiming 4 true
+PassengerYawBeforePitch 4 false
+GunOrigin 4 -78 10 0
+Passenger 5 -132 41 -5 tail 235 305 -35 35 reargun PassengerGun5
+PassengerAimSpeed 5 3.0 3.0 0
+PassengerLegacyAiming 5 true
+PassengerYawBeforePitch 5 false
+GunOrigin 5 -132 41 -5
+Passenger 6 -132 41 5 tail 55 125 -35 35 reargun PassengerGun6
+PassengerAimSpeed 6 3.0 3.0 0
+PassengerLegacyAiming 6 true
+PassengerYawBeforePitch 6 false
+GunOrigin 6 -132 41 5
+Passenger 7 -275 52 0 tail 135 225 -45 45 reargun PassengerGun7
+PassengerAimSpeed 7 0.0 0.0 0
+PassengerLegacyAiming 7 true
+PassengerYawBeforePitch 7 false
+GunOrigin 7 -275 52 0
+// ------------------------------------------------------ Sounds ------------------------------------------------------
+StartSound Lancaster_StartSound
+StartSoundLength 40
+PropSound Lancaster_PropSound
+PropSoundLength 40
+StartSoundRange 100
+EngineSoundRange 1000
+PlaceSoundPrimary Spitfire_PlaceSound
+ShootSoundPrimary whistle1
+ReloadSoundPrimary PG_reload
+PlaceSoundSecondary None
+ShootSoundSecondary Bombair
+ReloadSoundSecondary PlaneBomb_reload1
+LockedOnSound Lock
+SoundTime 8
+LockedOnSoundRange 15
+// ------------------------------------------------------ Recipe ------------------------------------------------------
+//Each section of the plane may have many parts
+//The sections are tailWheel, tail, bay, topWing, rightWingWheel, rightWing, rightWingWheel,
+//rightWing, nose, turret, coreWheel, core
+AddRecipeParts core 56 iron
+AddRecipeParts tail 2 iron
+AddRecipeParts rightWing 2 iron
+//Dye colours are "black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "lightBlue", "magenta", "orange", "white"
+//AddDye 0 gray
+// ------------------------------------------------------ Health and hitboxes ------------------------------------------------------
+SetupPart core 500 -121 28 -21 260 48 42
+SetupPart rightWing 450 -45 36 -310 80 23 598
+SetupPart tail 400 -288 32 -19 167 40 38
+HasGear True
+BulletDetection 10
+SquashMobs false
+//Collision points for breaking wings etc. upon crashing
+//rightWing
+CollisionPoint 100 50 0 core
+CollisionPoint 116 50 0 core
+CollisionPoint 132 50 0 core
+CollisionPoint -124 50 0 tail
+CollisionPoint -140 50 0 tail
+CollisionPoint -156 50 0 tail
+CollisionPoint -172 50 0 tail
+CollisionPoint -188 50 0 tail
+CollisionPoint -204 50 0 tail
+CollisionPoint -220 50 0 tail
+CollisionPoint -236 50 0 tail
+CollisionPoint -252 50 0 tail
+CollisionPoint -268 50 0 tail
+CollisionPoint -284 50 0 tail
+CollisionPoint -240 60 16 tail
+CollisionPoint -240 60 32 tail
+CollisionPoint -240 60 48 tail
+CollisionPoint -240 60 64 tail
+CollisionPoint -240 60 80 tail
+CollisionPoint -240 60 96 tail
+CollisionPoint -240 60 112 tail
+CollisionPoint -240 60 -16 tail
+CollisionPoint -240 60 -32 tail
+CollisionPoint -240 60 -48 tail
+CollisionPoint -240 60 -64 tail
+CollisionPoint -240 60 -80 tail
+CollisionPoint -240 60 -96 tail
+CollisionPoint -240 60 -112 tail
+CollisionPoint -236 64 0 tail
+CollisionPoint -236 80 0 tail
+CollisionPoint -236 96 0 tail
+CollisionPoint -236 112 0 tail
+CollisionPoint -236 128 0 tail
+CollisionPoint -236 144 0 tail
+CollisionPoint 3 50 30 rightWing
+CollisionPoint 2 50 46 rightWing
+CollisionPoint 2 50 62 rightWing
+CollisionPoint 2 50 78 rightWing
+CollisionPoint 2 50 94 rightWing
+CollisionPoint 2 50 110 rightWing
+CollisionPoint 2 50 126 rightWing
+CollisionPoint 2 50 142 rightWing
+CollisionPoint 2 50 158 rightWing
+CollisionPoint 2 50 174 rightWing
+CollisionPoint 2 50 190 rightWing
+CollisionPoint 2 50 206 rightWing
+CollisionPoint 2 50 222 rightWing
+CollisionPoint 2 50 238 rightWing
+CollisionPoint 2 50 254 rightWing
+CollisionPoint 2 53 270 rightWing
+CollisionPoint 2 54 286 rightWing
+CollisionPoint 2 56 302 rightWing
+CollisionPoint 3 50 -30 rightWing
+CollisionPoint 2 50 -46 rightWing
+CollisionPoint 2 50 -62 rightWing
+CollisionPoint 2 50 -78 rightWing
+CollisionPoint 2 50 -94 rightWing
+CollisionPoint 2 50 -110 rightWing
+CollisionPoint 2 50 -126 rightWing
+CollisionPoint 2 50 -142 rightWing
+CollisionPoint 2 50 -158 rightWing
+CollisionPoint 2 50 -174 rightWing
+CollisionPoint 2 50 -190 rightWing
+CollisionPoint 2 50 -206 rightWing
+CollisionPoint 2 50 -222 rightWing
+CollisionPoint 2 50 -238 rightWing
+CollisionPoint 2 53 -254 rightWing
+CollisionPoint 2 54 -270 rightWing
+CollisionPoint 2 55 -286 rightWing
+CollisionPoint 2 56 -302 rightWing
+IsExplosionWhenDestroyed true
+CollisionDamageEnable false
+CollisionDamageThrottle 0.21
+CollisionDamageTimes 0
+HasFlare False
+
+Size 20 20

@@ -1,0 +1,9 @@
+Name JerryCan[Full]
+ShortName fuelcan
+Icon FuelCan
+//Colour in Red, Green, Blue, each going up to 255.
+Colour 255 255 255
+//Categories are Cockpit, Wing, Engine, Propeller, Bay, Tail, Wheel, Chassis, Turret, Fuel, Misc
+Category Fuel
+Fuel 4000
+StackSize 64

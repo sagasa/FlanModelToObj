@@ -36,9 +36,11 @@ AddAmmo he_it2_shell 1 iron 2 gunpowder
 AddGun aphe_mt1_shell 2 iron 1 gunpowder
 AddAmmo he_mt1_shell 1 iron 2 gunpowder
 AddGun heat_mt1_shell 1 iron 2 gunpowder
+AddAmmo apds_mt1_shell 2 iron 2 gunpowder
 AddGun aphe_mt2_shell 2 iron 1 gunpowder
 AddAmmo he_mt2_shell 1 iron 2 gunpowder
 AddGun apcr_mt2_shell 1 iron 2 gunpowder
+AddAmmo apds_mt2_shell 2 iron 2 gunpowder
 AddGun aphe_ht1_shell 2 iron 2 gunpowder
 AddAmmo he_ht1_shell 2 iron 2 gunpowder
 AddGun aphe_ht2_shell 2 iron 2 gunpowder

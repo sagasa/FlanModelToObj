@@ -1,21 +1,18 @@
 package com.flansmod.client.tmt;
 
-/**使いにくすぎたのでほぼ改変
- * 実質フォーマットを合わせただけのVertUV*/
-public class Coord2D
-{
-	public Coord2D(double x, double y)
-	{
-		this(x, y, (int)Math.floor(x), (int)Math.floor(y));
+/**
+ * 使いにくすぎたのでほぼ改変 実質フォーマットを合わせただけのVertUV
+ */
+public class Coord2D {
+	public Coord2D(double x, double y, double z) {
+		this(x, y, z, (int) Math.floor(x), (int) Math.floor(y));
 	}
 
-
-	public Coord2D(double x, double y, int u, int v)
-	{
-		this(x,y,0d,u,v);
+	public Coord2D(double x, double y, int u, int v) {
+		this(x, y, 0d, u, v);
 	}
-	public Coord2D(double x, double y,double z, int u, int v)
-	{
+
+	public Coord2D(double x, double y, double z, int u, int v) {
 		xCoord = x;
 		yCoord = y;
 		zCoord = z;
@@ -23,41 +20,29 @@ public class Coord2D
 		vCoord = v;
 	}
 
-	public Coord2D rotate(float xRot, float yRot, float zRot)
-	{
-		float x = xRot;
-		float y = yRot;
-		float z = zRot;
-		float xC = (float) Math.cos(x);
-		float xS = (float) Math.sin(x);
-		float yC = (float) Math.cos(y);
-		float yS = (float) Math.sin(y);
-		float zC = (float) Math.cos(z);
-		float zS = (float) Math.sin(z);
+	public Coord2D rotate(float rotateX, float rotateY, float rotateZ) {
+		double x = xCoord;
+		double y = yCoord;
+		double z = zCoord;
 
-		double xVec = xCoord;
-		double yVec = yCoord;
-		double zVec = zCoord;
+		// X軸回転
+		y = y * Math.cos(rotateX) - z * Math.sin(rotateX);
+		z = y * Math.sin(rotateX) + z * Math.cos(rotateX);
 
-		// rotation around x
-		double xy = xC*yVec - xS*zVec;
-		double xz = xC*zVec + xS*yVec;
-		// rotation around y
-		double yz = yC*xz - yS*xVec;
-		double yx = yC*xVec + yS*xz;
-		// rotation around z
-		double zx = zC*yx - zS*xy;
-		double zy = zC*xy + zS*yx;
+		// Y軸回転
+		x = x * Math.cos(rotateY) + z * Math.sin(rotateY);
+		z = -x * Math.sin(rotateY) + z * Math.cos(rotateY);
 
-		xCoord = zx;
-		yCoord = zy;
-		zCoord = yz;
-		return new Coord2D(zx, zy, yz,uCoord ,vCoord);
+		// Z軸回転
+		x = x * Math.cos(rotateZ) - y * Math.sin(rotateZ);
+		y = x * Math.sin(rotateZ) + y * Math.cos(rotateZ);
+
+		return new Coord2D(x, y, z, uCoord, vCoord);
 	}
 
-	public double xCoord;
-	public double yCoord;
-	public double zCoord;
-	public int uCoord;
-	public int vCoord;
+	final public double xCoord;
+	final public double yCoord;
+	final public double zCoord;
+	final public int uCoord;
+	final public int vCoord;
 }

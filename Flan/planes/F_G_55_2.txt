@@ -1,0 +1,120 @@
+// ------------------------------------------------------ Naming ------------------------------------------------------
+Name [F]G.55
+ShortName g55
+Description CoreHP 150_WingHP 125_TailHP 125_PrimaryGun_ [AP]Plane Machinegun Ammo_SecondaryGun_ [HE]Plane Autocannon Ammo
+// ------------------------------------------------------ Visuals -----------------------------------------------------
+Model serik4.G55
+ModelScale 1.15
+Icon G55
+Texture G55
+CameraDistance 7.5
+RestingPitch 5.0
+Acceleration 2.0 2.0
+Mode Plane
+
+MaxThrottle 1.45
+MaxNegativeThrottle 0.0
+
+TurnLeftSpeed 0.85
+TurnRightSpeed 0.85
+
+LookUpSpeed 0.85
+LookDownSpeed 0.85
+
+RollLeftSpeed 2.1
+RollRightSpeed 2.1
+
+Drag 0.45
+//Wheels
+NumWheels 3
+WheelPosition 0 33 -5 -28
+WheelPosition 1 33 -5 28
+WheelPosition 2 -65 21 0
+WheelSpringStrength 0.125
+Propeller 0 0 0 0 nose propeller
+// ------------------------------------------------------ Weaponry ------------------------------------------------------
+//Weapon types. Options are Missile, Bomb, Gun, Shell, None
+Primary Missile
+Secondary Shell
+//Time between shots in 1/20ths of seconds
+PlaceTimePrimary 160
+ShootDelayPrimary 2
+ReloadTimePrimary 80
+PlaceTimeSecondary 160
+ShootDelaySecondary 2
+ReloadTimeSecondary 100
+BulletSpeed 10.0
+BulletSpread 0.75
+//Whether to alternate or fire all together
+AlternatePrimary False
+AlternateSecondary True
+//Firing modes. One of SemiAuto, FullAuto or Minigun
+ModePrimary FullAuto
+ModeSecondary FullAuto
+
+ShootPointPrimary 45 34 4 core
+ShootPointPrimary 45 34 -4 core
+
+ShootPointSecondary 42 17 38 leftWing
+ShootPointSecondary 42 17 -38 rightWing
+ShootPointSecondary 65 25 0 core
+ShootParticlesSecondary cloud 0 0 0
+
+DamageModifierSecondary 1.1
+// ------------------------------------------------------ Inventory ------------------------------------------------------
+CargoSlots 0
+BombSlots o
+MissileSlots 2
+AllowAllAmmo False
+AddAmmo mg_plane_ammo
+AddAmmo ac_plane_shell
+//Fuel Tank Size (1 point of fuel will keep one propeller going with throttle at 1 for 1 tick)
+FuelTankSize 10000
+// ------------------------------------------------------ Passengers ------------------------------------------------------
+Pilot 4 20 0
+Passengers 0
+// ------------------------------------------------------ Sounds ------------------------------------------------------
+StartSound BF109_StartSound
+StartSoundLength 20
+PropSound BF109_PropSound
+PropSoundLength 40
+StartSoundRange 100
+EngineSoundRange 1000
+PlaceSoundPrimary BF109_PlaceSound
+ShootSoundPrimary 12,7mm_2
+ReloadSoundPrimary PG_reload
+PlaceSoundSecondary None
+ShootSoundSecondary MG151_Fire
+ReloadSoundSecondary PlaneBomb_reload1
+// ------------------------------------------------------ Recipe ------------------------------------------------------
+//Each section of the plane may have many parts
+//The sections are tailWheel, tail, bay, topWing, leftWingWheel, leftWing, rightWingWheel,
+//rightWing, nose, turret, coreWheel, core
+AddRecipeParts core 22 iron
+AddRecipeParts leftWing 2 iron
+AddRecipeParts tail 2 iron
+//Dye colours are "black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "lightBlue", "magenta", "orange", "white"
+//AddDye 0 gray
+// ------------------------------------------------------ Health and hitboxes ------------------------------------------------------
+SetupPart core 150 -36 8 -13 110 32 26
+SetupPart tail 125 -87 13 -12 51 30 24
+SetupPart leftWing 125 -10 17 -105 49 8 210
+HasGear True
+BulletDetection 5
+//Collision points for breaking wings etc. upon crashing
+CollisionPoint 42 22 0 core
+CollisionPoint -40 22 0 core
+CollisionPoint -88 28 0 tail
+CollisionPoint -114 43 0 tail
+CollisionPoint -2 18 -26 leftWing
+CollisionPoint -2 21 -58 leftWing
+CollisionPoint -2 24 -90 leftWing
+CollisionPoint -2 18 26 leftWing
+CollisionPoint -2 21 58 leftWing
+CollisionPoint -2 24 90 leftWing
+
+IsExplosionWhenDestroyed true
+CollisionDamageEnable false
+CollisionDamageThrottle 0.21
+CollisionDamageTimes 0
+HasFlare False

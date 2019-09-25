@@ -5,7 +5,7 @@ Model Bullet
 //Colour of icon and model
 Colour 255 255 255
 ItemID 10113
-Icon ppsh41ammo
+Icon wrench_oil
 //How affected by gravity the bullet is
 FallSpeed 0.0
 //The maximum stack size

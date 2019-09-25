@@ -1,0 +1,27 @@
+Name PlaneAmmoBox
+ShortName p_ammobox
+TopTexture planeammoboxtop
+SideTexture planeammoboxtop
+BottomTexture bottom
+//Recipe I iron G dyePowder.2
+//III
+//GGG
+//III
+//AddGun shortName amountOf item
+//AddAmmo must come immediately after AddGun for them to be in the same slot
+//The names of the items / blocks are those in the code, with some exceptions such as iron _ingotIron_ and gunpowder _sulphur_
+//And with parts from this mod, they are the shortName of the item
+//Guns cannot yet have multiple ammo types in the same slot. For now, just list them under two seperate guns that are the same
+//NumGuns must come before all the addGun lines and must be correct.
+//iron blockIron ingotGold diamond log glass gunpowder redstone
+
+NumGuns 4
+
+AddGun mg_plane_ammo 1 iron 1 gunpowder
+AddAmmo ac_plane_shell 1 iron 1 gunpowder
+AddGun apcr_attacker_shell 2 iron 2 gunpowder
+AddAmmo he_attacker_shell 2 iron 2 gunpowder
+AddGun antip_bomb 2 iron 3 gunpowder
+AddAmmo ptab 3 iron 2 gunpowder
+AddGun sb_bomb 3 iron 4 gunpowder
+AddAmmo mclos_missile 3 iron 2 gunpowder 1 redstone

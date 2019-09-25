@@ -1,11 +1,11 @@
-Name [SMG3]KP/-31
+Name [SMG3]KP M/31
 ShortName kp31
-Description [SMG3]SMG 71Round Magazine [DamageVsLiving 2]_ShootDelay 1_EquipPoint 5
+Description [SMG3]SMG 71Round Magazine [DamageVsLiving 1.5]_ShootDelay 1_EquipPoint 5
 //The ammo this gun uses (shortName)
 Ammo smg3_ammo
 //Ammo smg2_ammo
 Ammo dummyammo
-Icon KP31
+Icon kp31
 //Colour in Red, Green, Blue, each going up to 255.
 Colour 255 255 255
 ItemID 10023
@@ -18,7 +18,7 @@ RandomRecoilYawRange 0.75
 DecreaseRecoil 0
 DecreaseRecoilYaw 1
 //Damage in half hearts
-Damage 1
+Damage 1.5
 IgnoreArmorProbability 1.0
 IgnoreArmorDamageFactor 1.0
 //Modifiers

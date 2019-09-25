@@ -1,0 +1,126 @@
+// ------------------------------------------------------ Naming ------------------------------------------------------
+Name [JA]P-59
+ShortName p-59
+Description CoreHP 125_WingHP 125_TailHP 100_PrimaryGun_ [APCR]Attacker Gun Shell_ [HE]Attacker Gun Shell_SecondaryGun_ [AP]Plane Machinegun Ammo
+// ------------------------------------------------------ Visuals ------------------------------------------------------
+Model pon.P59
+ModelScale 0.9
+Icon P59
+Texture P59
+//Third Person Camera Distance
+CameraDistance 8.0
+//Resting Pitch. Set this so the plane spawns level. It will fall onto its collision boxes automatically, but this lets you start it flat
+RestingPitch 5.0
+Acceleration 1.25 1.25
+// ------------------------------------------------------ Movement ------------------------------------------------------
+//Mode : One of Plane, Heli or VTOL. The VTOL has a toggle button that switches some model aesthetics and the flight mode
+Mode Plane
+//Throttle
+MaxThrottle 1.7
+MaxNegativeThrottle 0.0
+//Yaw modifiers
+TurnLeftSpeed 0.65
+TurnRightSpeed 0.65
+//Pitch modifiers
+LookUpSpeed 0.65
+LookDownSpeed 0.65
+//Roll modifiers
+RollLeftSpeed 2.0
+RollRightSpeed 2.0
+//Drag 1.0 is standard. Modify to make the plane / heli more or less sluggish
+Drag 0.425
+//Wheels
+NumWheels 3
+//WheelPosition 0 56 -40 -43
+//WheelPosition 1 56 -40 43
+//WheelPosition 2 -93 -12 0
+WheelPosition 0 56 0 -43
+WheelPosition 1 56 0 43
+WheelPosition 2 -93 28 0
+WheelSpringStrength 0.125
+//Propeller Positions
+//Propeller <ID> <x> <y> <z> <planePart> <recipeItem>
+Propeller 0 69 30 0 nose propeller
+Propeller 1 69 30 0 nose propeller
+// ------------------------------------------------------ Weaponry ------------------------------------------------------
+//Weapon types. Options are Missile, Bomb, Gun, Shell, None
+Primary Shell
+Secondary Missile
+//Time between shots in 1/20ths of seconds
+PlaceTimePrimary 180
+ShootDelayPrimary 5
+ReloadTimePrimary 80
+PlaceTimeSecondary 160
+ShootDelaySecondary 2
+ReloadTimeSecondary 160
+BulletSpeed 17.0
+BulletSpread 0.5
+//Whether to alternate or fire all together
+AlternatePrimary False
+AlternateSecondary False
+//Firing modes. One of SemiAuto, FullAuto or Minigun
+ModePrimary FullAuto
+ModeSecondary FullAuto
+//Add shoot origins. These are the points on your vehicle from which bullets / missiles / shells / bombs appear
+ShootPointPrimary 111 16 -4
+ShootPointSecondary 111 20 2
+ShootPointSecondary 111 18 4
+ShootPointSecondary 111 16 6
+// ------------------------------------------------------ Inventory ------------------------------------------------------
+CargoSlots 0
+BombSlots 0
+MissileSlots 2
+AllowAllAmmo False
+AddAmmo apcr_attacker_shell
+AddAmmo he_attacker_shell
+AddAmmo mg_plane_ammo
+//Fuel Tank Size (1 point of fuel will keep one propeller going with throttle at 1 for 1 tick)
+FuelTankSize 2500
+FuelConsumption 4
+// ------------------------------------------------------ Passengers ------------------------------------------------------
+Pilot 47 14 0
+Passengers 0
+// ------------------------------------------------------ Sounds ------------------------------------------------------
+StartSound jetengine
+StartSoundLength 70
+PropSound jetengine
+PropSoundLength 70
+StartSoundRange 100
+EngineSoundRange 1000
+PlaceSoundPrimary F8_PlaceSound
+ShootSoundPrimary PG_BK3,7_fire
+ReloadSoundPrimary PG_reload
+PlaceSoundSecondary None
+ShootSoundSecondary BrowningM2_Fire
+ReloadSoundSecondary PG_reload
+// ------------------------------------------------------ Recipe ------------------------------------------------------
+//Each section of the plane may have many parts
+//The sections are tailWheel, tail, bay, topWing, leftWingWheel, leftWing, rightWingWheel,
+//rightWing, nose, turret, coreWheel, core
+AddRecipeParts core 36 iron 1 bp_p-59
+AddRecipeParts leftWing 2 iron
+AddRecipeParts tail 2 iron
+//Dye colours are "black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "lightBlue", "magenta", "orange", "white"
+//AddDye 0 gray
+// ------------------------------------------------------ Health and hitboxes ------------------------------------------------------
+SetupPart core 125 -34 2 -10 145 35 21
+SetupPart tail 100 -114 12 -9 79 46 19
+SetupPart leftWing 125 -13 18 -125 64 8 252
+HasGear True
+BulletDetection 5
+SquashMobs false
+//Collision points for breaking wings etc. upon crashing
+//Core
+CollisionPoint 120 28 -2 core
+CollisionPoint 30 44 -133 leftWing
+CollisionPoint 30 44 -93 leftWing
+CollisionPoint 30 44 -13 leftWing
+CollisionPoint 30 44 133 leftWing
+CollisionPoint 30 44 93 leftWing
+CollisionPoint 30 44 13 leftWing
+CollisionPoint -107 43 -2 tail
+IsExplosionWhenDestroyed true
+CollisionDamageEnable false
+CollisionDamageThrottle 0.21
+CollisionDamageTimes 0
+HasFlare False

@@ -1,7 +1,7 @@
 // ------------------------------------------------------ Naming ------------------------------------------------------
 Name [AAG]2cm Flakvierling38
 ShortName flakvierling38
-Description CoreHP 800_[AA]2cm AAGun 120Round Ammo
+Description CoreHP 800_[AA]Low-Caliber AAGun 120Round Ammo
 // ------------------------------------------------------ Visuals ------------------------------------------------------
 Icon Icon_WW2_AAGun_Flak20mmVierling_1A
 Model cvts.FlakvierlingKai

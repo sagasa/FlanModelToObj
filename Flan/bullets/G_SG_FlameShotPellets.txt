@@ -8,6 +8,8 @@ Colour 255 255 255
 Icon ammoicon
 //How affected by gravity the bullet is
 FallSpeed 0.1
+SetEntitiesOnFire true
+FireSeconds 10
 //The number of rounds each item has. Limited to 32000.
 RoundsPerItem 16
 //The maximum stack size of a stack of these

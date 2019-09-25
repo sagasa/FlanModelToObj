@@ -2,7 +2,7 @@ Name [HG2]Type26
 ShortName type26
 Description [HG2]HG Cartridge [DamageVsLiving 6]_ShootDelay 3_EquipPoint 1
 //The ammo this gun uses (shortName)
-Ammo hg3_ammo
+Ammo hg2_ammo
 Ammo dummyammo
 Icon type26
 //Colour in Red, Green, Blue, each going up to 255.

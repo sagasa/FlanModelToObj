@@ -1,4 +1,4 @@
-Name [VG]AircraftRearGun
+Name [PG]AircraftRearGun
 ShortName reargun
 //The ammo this gun uses _shortName_
 Ammo mg_plane_ammo
@@ -13,7 +13,7 @@ Recoil 1
 //Number of bullets to create on firing the weapon. If you set this to 2 knockback and Damage doubles, and multiplies 1 time per added shot.
 NumBullets 1
 //Damage in half hearts
-Damage 3
+Damage 2
 IgnoreArmorProbability 1.0
 IgnoreArmorDamageFactor 1.0
 MeleeDamage 1
@@ -21,7 +21,7 @@ MeleeDamage 1
 Accuracy 2
 //Time in ticks between rounds
 ShootDelay 1
-ShootSound HMG_BrowningM1919A4_fire2
+ShootSound RPD_Fire
 ReloadSoundRange 5
 GunSoundRange 400
 //The length of the sound. 0 for a single shot sound. Other values are for looping sounds

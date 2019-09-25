@@ -17,5 +17,5 @@ BottomTexture bottom
 
 NumGuns 2
 
-AddGun kabar 2 iron
-AddGun sabre 3 iron
+AddGun kabar 2 iron_nugget
+AddGun sabre 3 iron_nugget

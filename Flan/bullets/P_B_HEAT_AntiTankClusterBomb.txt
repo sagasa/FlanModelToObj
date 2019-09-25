@@ -1,0 +1,46 @@
+Name [HEAT]Anti-Tank Cluster Bomb
+ShortName ptab
+Description Bomblets 8_DamageVsLiving 5_DamageVsPlayer 5_DamageVsVehicles 1000_DamageVsPlanes 150_Explosion 3_ExplosionDamageVsLiving 0.15_ExplosionDamageVsPlayer 0.15_ExplosionDamageVsPlane 5_ExplosionDamageVsVehicle 5
+Model Bomb
+//Colour of icon and model
+Colour 255 255 255
+//ItemID 
+Icon at_cluster
+//How affected by gravity the bullet is
+FallSpeed 1.25
+//The number of rounds each item has. Limited to 32000.
+RoundsPerItem 1
+//The maximum stack size of a stack of these
+MaxStackSize 1
+//The damage multiplier caused by the bullet on hitting an entity
+DamageVsLiving 5
+DamageVsPlayer 5
+DamageVsVehicles 100
+DamageVsPlanes 150
+//Size of explosion caused
+Explosion 5
+ExplosionDamageVsLiving 0.15
+ExplosionDamageVsPlayer 0.15
+ExplosionDamageVsPlane 5
+ExplosionDamageVsVehicle 5
+//True if bullet explodes on hitting anything. Fuse denotes the maximum time it may spend in the air before detonating
+ExplodeOnImpact False
+Fuse 60
+FlakParticles 1
+//Amount of fire to spread on exploding; for each increment, it will increase the dimensions of the burning area by 2. i.e. 1 will burn a 3x3 square, 2 will burn a 5x5 square
+Fire 0
+BreaksGlass False
+//Size of box to check for entities to hit / detonate
+HitBoxSize 0.1
+HitSound bomb
+//Whether or not the bullet can travel through an entity having hit it
+Penetrates False
+SmokeTrail False
+TrailParticleType fireworksSpark
+//True if this is a bomb
+Bomb True
+HasSubmunitions true
+Submunition ptabbomblets
+NumSubmunitions 8
+SubmunitionDelay 1
+SubmunitionSpread 16

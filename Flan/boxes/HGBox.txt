@@ -18,7 +18,7 @@ BottomTexture bottom
 NumGuns 13
 
 AddGun c96f 3 iron
-AddAmmo ticket_smg3_ammo 1 iron 2 gunpowder
+AddAmmo ticket_hg1_ammo 1 iron 2 gunpowder
 
 AddGun hipower 3 iron
 AddAmmo ticket_hg1_ammo 1 iron 1 gunpowder
@@ -30,19 +30,19 @@ AddGun type94hg 3 iron
 AddAmmo ticket_hg1_ammo 1 iron 1 gunpowder
 
 AddGun p08 3 iron
-AddAmmo ticket_hg2_ammo 1 iron 1 gunpowder
+AddAmmo ticket_hg1_ammo 1 iron 1 gunpowder
 AddGun p38 3 iron
-AddAmmo ticket_hg2_ammo 1 iron 1 gunpowder
+AddAmmo ticket_hg1_ammo 1 iron 1 gunpowder
 AddGun m1911 3 iron
-AddAmmo ticket_hg2_ammo 1 iron 1 gunpowder
+AddAmmo ticket_hg1_ammo 1 iron 1 gunpowder
 AddGun welrod 5 iron
-AddAmmo ticket_hg2_ammo 1 iron 1 gunpowder
+AddAmmo ticket_hg1_ammo 1 iron 1 gunpowder
 
 AddGun m1917rv 3 iron
-AddAmmo ticket_hg3_ammo 1 iron 1 gunpowder
+AddAmmo ticket_hg2_ammo 1 iron 1 gunpowder
 AddGun webley 3 iron
-AddAmmo ticket_hg3_ammo 1 iron 1 gunpowder
+AddAmmo ticket_hg2_ammo 1 iron 1 gunpowder
 AddGun nm1895 3 iron
-AddAmmo ticket_hg3_ammo 1 iron 1 gunpowder
+AddAmmo ticket_hg2_ammo 1 iron 1 gunpowder
 AddGun type26 3 iron
-AddAmmo ticket_hg3_ammo 1 iron 1 gunpowder
+AddAmmo ticket_hg2_ammo 1 iron 1 gunpowder

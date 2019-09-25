@@ -40,22 +40,23 @@ public class VertexUV {
 	}
 
 	public VertexUV rotate(float pointX, float pointY, float pointZ, float rotateX, float rotateY, float rotateZ) {
-		float x = X-pointX;
-		float y = Y-pointY;
-		float z = Z-pointZ;
+		float x = X - pointX;
+		float y = Y - pointY;
+		float z = Z - pointZ;
 
-		//Z軸回転
-		x = (float) (x * Math.cos(rotateZ) - y * Math.sin(rotateZ));
-		y = (float) (x * Math.sin(rotateZ) + y * Math.cos(rotateZ));
+		// X軸回転
+		y = (float) (y * Math.cos(rotateX) - z * Math.sin(rotateX));
+		z = (float) (y * Math.sin(rotateX) + z * Math.cos(rotateX));
 
-		//Y軸回転
+		// Y軸回転
 		x = (float) (x * Math.cos(rotateY) + z * Math.sin(rotateY));
 		z = (float) (-x * Math.sin(rotateY) + z * Math.cos(rotateY));
 
-		//X軸回転
-		y = (float) (y * Math.cos(rotateX) - z * Math.sin(rotateX));
-		z = (float) (y * Math.sin(rotateX) + z * Math.cos(rotateX));
-		return new VertexUV(x+pointX, y+pointY, z+pointZ, U, V);
+		// Z軸回転
+		x = (float) (x * Math.cos(rotateZ) - y * Math.sin(rotateZ));
+		y = (float) (x * Math.sin(rotateZ) + y * Math.cos(rotateZ));
+
+		return new VertexUV(x + pointX, y + pointY, z + pointZ, U, V);
 	}
 
 	public final float U;

@@ -11,7 +11,7 @@ ItemID 10100
 //Reload time in ticks, 1/20ths of a second
 ReloadTime 60
 //The amount of gun recoil, all relative : Sten = 1, Mp40 = 3, Kar98kSniper = 20
-Recoil 5.75
+Recoil 6
 RandomRecoilRange 1.5
 RandomRecoilYawRange 1.0
 DecreaseRecoil 4.0
@@ -21,7 +21,7 @@ Damage 0.88
 IgnoreArmorProbability 1.0
 IgnoreArmorDamageFactor 1.0
 //Modifiers
-MoveSpeedModifier 0.85
+MoveSpeedModifier 0.9
 //The higher this value, the more the bullets spread
 //AccuracyInADS 2
 Accuracy 2.5
