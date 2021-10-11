@@ -16,17 +16,18 @@ public class Main {
 		// ログ
 		try {
 			PrintStream err = new PrintStream("./log.txt");
-			System.setErr(err);
+			//System.setErr(err);
 			PrintStream log = new PrintStream("./log.txt");
-			System.setOut(log);
+			//System.setOut(log);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		// FlanModelLoader loader = new FlanModelLoader(new File("./Flan"));
-		// loader.read(ModelType.VEHICLE, "/vehicles/GER_HT1_Pz.VI_Ausf_E_Tiger.txt");
-		// loader.read(ModelType.VEHICLE, "/vehicles/JPN_MT1_Type3_Chi-Nu.txt");
-		// loader.readAll();
+		FlanModelLoader loader = new FlanModelLoader(new File("./Flan"));
+		loader.convert(ModelType.VEHICLE, "/vehicles/USSR_HT1_T-44-100.txt");
+		//loader.convert(ModelType.VEHICLE, "/vehicles/JPN_MT1_Type3_Chi-Nu.txt");
+		//loader.readAll();
 
+		/*
 		// ディレクトリ選択
 		JFileChooser filechooser = new JFileChooser();
 		filechooser.setCurrentDirectory(new File("."));
@@ -37,6 +38,6 @@ public class Main {
 			System.out.println("start read " + filechooser.getSelectedFile().getAbsolutePath());
 			new FlanModelLoader(filechooser.getSelectedFile()).readAll();
 			System.out.println("end read");
-		}
+		}//*/
 	}
 }

@@ -27,4 +27,11 @@ public class Polygon {
 		}
 		return this;
 	}
+
+	public Polygon rotate(float rotateX, float rotateY, float rotateZ) {
+		for (int i = 0; i < Vertex.length; i++) {
+			Vertex[i] = Vertex[i].rotate(rotateX, rotateY, rotateZ);
+		}
+		return this;
+	}
 }

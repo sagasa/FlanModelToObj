@@ -8,13 +8,13 @@ import java.util.Objects;
 import types.model.Polygon;
 import types.model.VertexUV;
 
-public class ObjBilder {
+public class ObjBuilder {
 	private Map<Vertex, Integer> VertexMap = new LinkedHashMap<>();
 	private Map<UV, Integer> UVMap = new LinkedHashMap<>();
 
 	private StringBuilder sb = new StringBuilder("mtllib texture.mtl\n");
 
-	public void addPart(Polygon[] polis, String name) {
+	public void addPart(String name,Polygon[] polis) {
 		//長さ0ならブレイク
 		if(polis.length==0) {
 			return;
@@ -29,9 +29,9 @@ public class ObjBilder {
 					VertexMap.put(pos, VertexMap.keySet().size() + 1);
 				}
 
-				UV uv = new UV(vert.U, vert.V);
+				UV uv = new UV(vert.U, 1-vert.V);
 				if (!new ArrayList<>(UVMap.keySet()).contains(uv)) {
-					sb.append("vt " + vert.U + " " + vert.V + "\n");
+					sb.append("vt " + uv.U + " " + uv.V + "\n");
 					UVMap.put(uv, UVMap.keySet().size() + 1);
 				}
 				polysb.append(" " + VertexMap.get(pos) + "/" + UVMap.get(uv));
@@ -49,7 +49,7 @@ public class ObjBilder {
 				+ texture + ".png\nmap_Kd " + texture + ".png";
 	}
 
-	private class Vertex {
+	public static class Vertex {
 		float X, Y, Z;
 
 		public Vertex(float x, float y, float z) {
@@ -73,7 +73,7 @@ public class ObjBilder {
 		}
 	}
 
-	private class UV {
+	public static class UV {
 		float U, V;
 
 		public UV(float u, float v) {
